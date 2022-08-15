@@ -1,0 +1,53 @@
+:root {
+    --blue: #2e51a2;
+}
+
+body {
+    width: 90%;
+    margin: auto;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    gap: 8px;
+}
+
+#nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a, a:visited  {
+    text-decoration: none;
+}
+
+#logo {
+    max-height: 1.6rem;
+    display: flex;
+    align-items: center;
+}
+
+h1 { 
+    color: var(--blue);
+    font-size: 2rem;
+}
+
+#sign-in {
+    border: var(--blue) 2px solid;
+    border-radius: 2px;
+    display: inline-block;
+    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    margin-left: 8px;
+    padding: 4px 0;
+    text-align: center;
+    text-decoration: none;
+    width: 90px;
+    background-color: var(--blue);
+    color: white;
+}
