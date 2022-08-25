@@ -7,6 +7,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase/compat/app';
 import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useEffect } from "react";
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Reviews from './pages/Reviews';
+import UserList from "./pages/UserList";
+import 'firebase/compat/functions';
 
 firebase.initializeApp({
   apiKey: "AIzaSyBVpUTLE7RMltSmdPsgD8gh5Gfmdi1xSpc",
@@ -54,10 +59,9 @@ function App() {
       name: user.displayName,
       id: user.uid,
       pic: user.photoURL,
-      lists: [],
-      reviews: [],
-  })
-}
+      lists: ['All Games'],
+    })
+  }
 
   function signOut () {
     auth.signOut();
@@ -66,7 +70,13 @@ function App() {
   return (
     <BrowserRouter basename="/">
       <UserContext.Provider value={user}>
-        <Nav signIn={signIn} signOut={signOut} />
+        <Nav signIn={signIn} signOut={signOut} firebase={firebase} />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/profile/:id" element={<Profile/>}/>
+          <Route path="/reviews/:id" element={<Reviews/>}/>  
+          <Route path="/:list/:id" element={<UserList/>}/> 
+        </Routes>
       </UserContext.Provider>
     </BrowserRouter>
   );

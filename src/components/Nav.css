@@ -1,10 +1,22 @@
 :root {
-    --blue: #2e51a2;
+    --button: #2e51a2;
+    --blue: #1c439b;
+    --lightblue: #8ba4de;
+    --navHover: #e1e7f5;
+    --black: #323232
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
 }
 
 body {
     width: 90%;
-    margin: auto;
+    margin: auto; 
 }
 
 nav {
@@ -24,6 +36,10 @@ a, a:visited  {
     text-decoration: none;
 }
 
+button:hover, #user-nav>*:hover {
+    cursor: pointer;
+}
+
 #logo {
     max-height: 1.6rem;
     display: flex;
@@ -36,10 +52,9 @@ h1 {
 }
 
 #sign-in {
-    border: var(--blue) 2px solid;
+    border: var(--button) 2px solid;
     border-radius: 2px;
     display: inline-block;
-    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
     font-size: 14px;
     font-weight: 700;
     line-height: 100%;
@@ -48,6 +63,92 @@ h1 {
     text-align: center;
     text-decoration: none;
     width: 90px;
-    background-color: var(--blue);
+    background-color: var(--button);
     color: white;
+}
+
+#user-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#user-lists-button, #user-options-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#user-lists, #user-options {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--blue);
+}
+
+#user-options {
+    width: 100%;
+}
+
+#user-lists>*, #user-options>* {
+    width: 100%;
+    padding: 3px;
+    border-bottom: 1px solid var(--blue);
+    background-color: white;
+    transition: 0.2s ease-in-out;
+    white-space: nowrap;
+    color: var(--blue);
+}
+
+#user-lists>*>*, #user-options>*>* {
+    background-color: inherit;
+    padding: 0 5px;
+    width: 100%;
+    color: inherit;
+    text-align: start;
+}
+
+#user-lists>*:last-child, #user-options>*:last-child {
+    border-bottom: 0;
+}
+
+#user-lists>*:hover, #user-options>*:hover {
+    background-color: var(--navHover);
+}
+
+#list-icon, #nav-profile-pic {
+    height: 30px;
+    width: 30px;
+}
+
+#nav-profile-pic {
+    border: 1px solid var(--lightblue);
+}
+
+#nav-profile-pic:hover {
+    filter: drop-shadow(0 0 1px var(--lightblue));
+}
+
+#arrow-icon {
+    height: 25px;
+    width: 25px;
+}
+
+#user-options-button>button{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    background-color: white;
+    font-size: 14px;
+    height: 30px;
+    transition: 0.2s ease-in-out;
+    padding-left: 5px;
+    border-radius: 2px;
+    color: var(--black);
+}
+
+#user-options-button>button:hover {
+    background-color: var(--navHover);
 }
