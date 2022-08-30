@@ -15,6 +15,8 @@ async function fetchData(url) {
   let response;
   await axios.get(url).then(resp => {
     response = resp.data;
+    response.next = null;
+    response.previous = null;
   });
   return JSON.stringify(response);
 }

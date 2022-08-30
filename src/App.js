@@ -9,9 +9,15 @@ import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from 'fire
 import { useEffect } from "react";
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Reviews from './pages/Reviews';
+import UserReviews from './pages/UserReviews';
 import UserList from "./pages/UserList";
 import 'firebase/compat/functions';
+import TopGames from "./pages/TopGames";
+import GamesByYear from "./pages/GamesByYear";
+import Search from "./pages/Search";
+import Reviews from "./pages/Reviews";
+import Footer from "./components/Footer";
+import Game from "./pages/Game";
 
 firebase.initializeApp({
   apiKey: "AIzaSyBVpUTLE7RMltSmdPsgD8gh5Gfmdi1xSpc",
@@ -60,6 +66,7 @@ function App() {
       id: user.uid,
       pic: user.photoURL,
       lists: ['All Games'],
+      keyword: user.displayName.toLowerCase(),
     })
   }
 
@@ -74,20 +81,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/profile/:id" element={<Profile/>}/>
-          <Route path="/reviews/:id" element={<Reviews/>}/>  
+          <Route path="/reviews" element={<Reviews/>}/> 
+          <Route path="/reviews/:id" element={<UserReviews/>}/>     
           <Route path="/:list/:id" element={<UserList/>}/> 
+          <Route path="/top-games/:platform" element={<TopGames/>}/>  
+          <Route path="/games-by-year/:year" element={<GamesByYear/>}/> 
+          <Route path="/search/:platform/:text" element={<Search/>}/>
+          <Route path="/game/:id" element={<Game/>}/>  
         </Routes>
+        <Footer/>
       </UserContext.Provider>
     </BrowserRouter>
   );
 }
 
 export default App;
-
-
-//<Routes>
-//  <Route path="/shopping-cart" element={<Home/>} />
-//  <Route path="/shopping-cart/shop" element={<Shop index={index} moveIndex={moveIndex} limit={limit} cards={cards}/>}>
-//    <Route path="/shopping-cart/shop/:id" element={<Info addItem={addItem} toggleCart={toggleCart} />} />
-//  </Route>
-//</Routes>

@@ -2,16 +2,16 @@ import { Link, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './../components/UserContext';
 
-const UserList = () => {
+const GamesByYear = () => {
     const user = useContext(UserContext);
 
-    const { id, list } = useParams();
-    console.log(id);
+    const { year } = useParams();
+    
     return (
         <div>
-            <h1>{list + ' List'}</h1>
+            <h1>{`${year}'s Games`}</h1>
         </div>
     );
 };
 
-export default UserList;
+export default GamesByYear;

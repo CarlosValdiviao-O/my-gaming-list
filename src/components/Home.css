@@ -1,0 +1,21 @@
+:root {
+    --button: #2e51a2;
+    --blue: #1c439b;
+    --lightblue: #8ba4de;
+    --navHover: #e1e7f5;
+    --black: #323232
+}
+
+#greet {
+    background-color: var(--navHover);
+    border-color: var(--navHover);
+    border-style: solid;
+    border-bottom-color: var(--blue);
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 5px 9px;
+    text-align: left;
+}

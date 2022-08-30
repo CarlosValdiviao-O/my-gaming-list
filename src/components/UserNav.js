@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
-import { getFirestore, collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDoc, doc } from 'firebase/firestore';
 import List from './../icons/format-list-bulleted.svg';
 import ListLight from './../icons/format-list-bulleted-light.svg';
 import Arrow from './../icons/menu-down.svg';
+import useClickOutside from './useClickOutside';
 
 const UserNav = (props) => {
     const { signOut } = props;
@@ -23,24 +24,24 @@ const UserNav = (props) => {
 
     const firestore = getFirestore();
 
-    function toggleUserLists () {
-        (listsDisp === true) ? setListsDisp(false) : setListsDisp(true);
-    }
-
-    function toggleUserOptions () {
-        (optionsDisp === true) ? setOptionsDisp(false) : setOptionsDisp(true);
-    }
-
     async function getLists() {
         const docRef = doc(firestore, 'users', user.uid);
         const docSnap = await getDoc(docRef);
         const data = docSnap.data();
         return data;
     }
+
+    let userListRef = useClickOutside(() => {
+        setListsDisp(false);
+    });
+
+    let userOptionsRef = useClickOutside(() => {
+        setOptionsDisp(false);
+    })
     
     return (
         <div id='user-nav'>
-            <div id='user-lists-button' onClick={toggleUserLists} >
+            <div ref={userListRef} id='user-lists-button' onClick={() => setListsDisp((listsDisp) => !listsDisp)} >
                 <img src={listIcon} alt='list-icon' id='list-icon'
                     onMouseEnter={() => setListIcon(ListLight)} onMouseLeave={() => setListIcon(List)}></img>               
                 {(listsDisp === true) ?
@@ -55,12 +56,11 @@ const UserNav = (props) => {
                  </div>
                 : ''}
             </div>
-            <div id='user-options-button' onClick={toggleUserOptions}>
+            <div ref={userOptionsRef} id='user-options-button' onClick={() => setOptionsDisp((optionsDisp) => !optionsDisp)}>
                 <button> 
                     <p>{user.displayName}</p>
                     <img src={Arrow} alt='arrow-icon' id='arrow-icon'></img>
-                </button>
-                
+                </button>      
                 {optionsDisp === true ? 
                  <div id='user-options'>
                         <Link to={`/profile/${user.uid}`}>
