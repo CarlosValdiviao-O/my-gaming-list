@@ -16,7 +16,7 @@ const SearchBar = (props) => {
     const [ searching, setSearching ] = useState(false);
     const [ lastSearch, setLastSearch ] = useState('');
     const getRAWG = firebase.functions().httpsCallable('getRAWG');
-    const link = 'https://api.rawg.io/api/games?search=';
+    const link = 'https://api.rawg.io/api/games?page_size=8&search=';
     const firestore = firebase.firestore();
     const options = [
         {name: 'All Games', val: 'all' },
@@ -59,7 +59,6 @@ const SearchBar = (props) => {
     }
 
     const filterGamesData = (data) => {
-        console.log(data);
         let aux = [];
         let count = (data.count > 8) ? 8 : data.count;
         for (let i = 0; i < count; i++) {
@@ -117,7 +116,7 @@ const SearchBar = (props) => {
                     {(dispRes === true && searchResults !== '') ? 
                         searchResults.map(item => {
                         return(
-                            <Link  key={searchResults.indexOf(item)} to={item.link}>
+                            <Link onClick={() => setDispRes(false)} key={searchResults.indexOf(item)} to={item.link}>
                                 <div className='search-result'>
                                     <div className='image-container'>
                                         <img src={(item.pic) ? item.pic : Image} alt={item.name}></img>

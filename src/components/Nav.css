@@ -3,7 +3,7 @@
     --blue: #1c439b;
     --lightblue: #8ba4de;
     --navHover: #e1e7f5;
-    --black: #323232
+    --black: #323232;
 }
 
 * {
@@ -16,15 +16,22 @@
 
 body {
     position: relative;
+    width: 100%;
 }
 
 #root {
-    width: 90%;
-    margin: auto; 
+    width: 100%;
 }
 
-#root>div{
+#my-gaming-list {
+    margin: auto; 
+    width: 1060px;
+}
+
+#my-gaming-list>div{
     min-height: 90vh;
+    border: solid 1px #bebebe;
+    min-width: fit-content;
 }
 
 nav {
@@ -32,6 +39,8 @@ nav {
     flex-direction: column;
     padding: 8px 0 0;
     gap: 8px;
+    min-width: 1062px;
+    width: 90%;
 }
 
 #nav-top {
@@ -95,6 +104,7 @@ h1 {
     display: flex;
     flex-direction: column;
     border: 2px solid var(--blue);
+    z-index: 15;
 }
 
 #user-options {
@@ -206,6 +216,7 @@ h1 {
     left: 0;
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 
 .platform-links>* {
@@ -262,6 +273,7 @@ h1 {
 #search-bar #search-container {
     border-left: 1px solid var(--button);
     text-indent: 0;
+    z-index: 10;
 }
 
 #search-bar input {
@@ -387,19 +399,20 @@ h1 {
 }
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
-    height: 30vh;
+    height: 20vh;
     color: white;
-    background-color: var(--blue);
     text-align: center;
-    width: 100%;
+    flex: 1 0;
+    min-width: 1060px;
 }
 
 footer>div:first-child {
-    height: 15vh;
-    background-color: white;
+    height: 5vh;
+    background-color: transparent;
+    pointer-events: none;
 }
 
 footer>div:last-child {
@@ -410,6 +423,7 @@ footer>div:last-child {
     height: 15vh;
     justify-content: center;
     font-size: 12px;
+    background-color: var(--blue);
 }
 
 footer a:hover {

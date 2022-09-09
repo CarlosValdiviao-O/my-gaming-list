@@ -17,19 +17,9 @@ const UserNav = (props) => {
 
     useEffect(() => {
         if (user) {
-            let data = getLists();
-            Promise.resolve(data).then((val) => setLists(val.lists))
+            setLists(user.lists);
         }
     }, [user]);
-
-    const firestore = getFirestore();
-
-    async function getLists() {
-        const docRef = doc(firestore, 'users', user.uid);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data();
-        return data;
-    }
 
     let userListRef = useClickOutside(() => {
         setListsDisp(false);
@@ -58,7 +48,7 @@ const UserNav = (props) => {
             </div>
             <div ref={userOptionsRef} id='user-options-button' onClick={() => setOptionsDisp((optionsDisp) => !optionsDisp)}>
                 <button> 
-                    <p>{user.displayName}</p>
+                    <p>{user.name}</p>
                     <img src={Arrow} alt='arrow-icon' id='arrow-icon'></img>
                 </button>      
                 {optionsDisp === true ? 
@@ -75,7 +65,7 @@ const UserNav = (props) => {
                     </div>
                 : ''}
             </div>
-            <img id='nav-profile-pic' src={user.photoURL} alt={user.displayName + ' Pic'} referrerPolicy="no-referrer"></img>
+            <img id='nav-profile-pic' src={user.pic} alt={user.name + ' Pic'} referrerPolicy="no-referrer"></img>
         </div>
     );
 };

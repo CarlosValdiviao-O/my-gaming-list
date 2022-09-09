@@ -1,0 +1,115 @@
+.carousel {
+    display: flex;
+    width: 100%;
+}
+
+.carousel {
+    position: relative;
+    margin-top: 2px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.carousel-initialized {
+    width: 100%;
+}
+
+.game {
+    width: 160px !important;
+    height: 220px;
+    position: relative;
+    border: 1px solid #bebebe;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    transition-timing-function: ease-in-out;
+    transition-duration: .3s;
+}
+
+.game:hover {
+    opacity: .8;
+}
+
+.game img {
+    width: 300%;
+    height: auto;
+}
+
+.game p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 11px;
+    padding: 5px;
+    line-height: 1.2em;
+    color: white;
+    text-shadow: rgb(0 0 0 / 80%) 1px 1px 0;
+}
+
+.carousel button {
+    position: absolute;
+    height: 80px;
+    width: 40px;
+    line-height: 1.5em;
+    transition: ease-in-out 0.3s;
+    opacity: 0;
+    cursor: pointer;
+    background-color: rgb(0 0 0 / 80%);
+    color: rgb(230 230 230 / 80%) !important;
+    font-size: 30px;
+    font-weight: bold;
+    top: 50%;
+    transform: translateY(-40px);
+    z-index: 5 !important;
+}
+
+.carousel .carousel-prev.block, .carousel .carousel-next.block {
+    opacity: 0 ; 
+}
+
+.carousel .carousel-next {
+    right: -40px;
+    border-radius: 45px 0 0 45px;
+    text-align: end;
+    padding-right: 6px;
+}
+
+.carousel .carousel-prev:before, .carousel .carousel-next::before {
+    background-image: none;
+    height: auto;
+}
+
+.carousel .carousel-prev:before {
+    content: '<' ;
+    transform: translateX(-7px);
+}
+
+.carousel .carousel-next::before {
+    content: '>' ;
+    transform: translateX(7px);
+}
+
+.carousel .carousel-prev {
+    left: -40px;
+    border-radius: 0 45px 45px 0;
+    text-align: start;
+    padding-left: 6px;
+    z-index: 1;
+}
+
+.carousel-initialized:hover .carousel-next {
+    transform: translate(-40px, -40px);
+    opacity: 1;
+}
+
+.carousel-initialized:hover .carousel-prev {
+    transform: translate(40px, -40px);
+    opacity: 1;
+}
+
+.game .loading {
+    width: 30%;
+}
