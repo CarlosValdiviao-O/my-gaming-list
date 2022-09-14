@@ -1,0 +1,153 @@
+.button-modal {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 10px;
+    line-height: 1.0em;
+    margin: 0;
+    opacity: 1;
+    padding: 2px 4px;
+    color: #1c439b;
+    transition-duration: .3s;
+    transition-property: all;
+}
+
+.button-modal:hover {
+    color: #fff;
+}
+
+#modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal .background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #666;
+    opacity: 0.3;
+}
+
+#modal .box {
+    position: absolute;
+    background-color: #FFF;
+    z-index: 25;
+    margin: auto;
+    width: 1010px;
+    height: 480px;
+    box-shadow: 20px 20px 20px rgb(0 0 0 / 10%), -20px -20px 20px rgb(0 0 0 / 10%),
+        20px -20px 20px rgb(0 0 0 / 10%), -20px 20px 20px rgb(0 0 0 / 10%);
+}
+
+#modal .close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    background-color: black;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: large;
+    font-weight: bolder;
+    padding: 1px 5px;
+    box-shadow: -5px 5px 5px rgb(0 0 0 / 30%);
+}
+
+#modal .border {
+    border: 10px solid #e1e7f5;
+    margin: 20px auto;
+    width: 650px;
+}
+
+#modal .inner-box {
+    border: 1px solid #1c439b;
+    width: 100%;
+    padding: 7px;
+    font-size: 11px;
+    line-height: 1.5em;
+}
+
+#modal h3, #modal form {
+    border-color: #bebebe;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    padding: 3px 0;
+}
+
+#modal form {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+#modal form>div {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding: 7px;
+}
+
+#modal #title a {
+    color: #1c439b;
+    font-weight: bold;
+}
+
+#modal #title a:hover {
+    text-decoration: underline;
+}
+
+#modal select {
+    width: fit-content;
+}
+
+#modal #buttons {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+#modal .resultBox {
+    border: 2px solid #1c439b;
+    width: calc(100% - 40px);
+    padding: 7px;
+    font-size: 11px;
+    line-height: 1.5em;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+    background-color: #e1e7f5;
+    gap: 7px;
+}
+
+#modal .resultBox p {
+    font-weight: bold;
+    color: #000;
+}
+
+#modal .links {
+    display: flex;
+    gap: 4px;
+}
+
+#modal .links a {
+    color: #1c439b;
+}
+
+#modal .links a:hover {
+    text-decoration: underline;
+}

@@ -31,7 +31,7 @@
     border-right: 1px solid #bebebe;
 }
 
-.left>div {
+.left>div, .right>div {
     margin: 0 10px 20px;
 }
 
@@ -49,4 +49,122 @@
 #columns>.right {
     min-width: 320px;
     flex-shrink: 0;
+}
+
+.user-game {
+    border: 0 solid #e5e5e5;
+    border-width: 0 0 1px;
+    display: flex;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 100%;
+    gap: 8px;
+}
+
+.user-game .image, .game .image {
+    width: 50px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #bebebe;
+}
+
+.user-game .image img, .game .image img {
+    width: 300%;
+    flex-shrink: 0;
+}
+
+.user-game .info {
+    flex: 1;
+    font-size: 11px;
+    line-height: 9px;
+}
+
+.user-game .top {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 3px 0;
+    padding: 3px 0;
+    gap: 5px;
+    height: 21px;
+}
+
+.user-game .title, .sidelist .header a, .sidelist .title {
+    color: #1c439b;
+    font-weight: 700;
+}
+
+.user-game .title:hover, .sidelist .header a:hover, .sidelist .title:hover {
+    text-decoration: underline;
+}
+
+
+.user-game .date {
+    color: #888;
+    font-size: 10px;
+}
+
+.user-game .status {
+    margin: 3px 0;
+    padding: 3px 0;
+    line-height: 16.5px;
+    font-size: 11px;
+}
+
+.sidelist .header {
+    display: flex;
+    background-color: #e1e7f5;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 8px;
+    font-size: 14px;
+}
+
+.sidelist .header a {
+    font-size: 12px;
+}
+
+.sidelist h3 {
+    font-weight: 700;
+}
+
+.sidelist .games {
+    background-color: #f8f8f8;
+    padding-top: 16px;
+    margin-bottom: 20px;
+}
+
+.sidelist .game {
+    display: flex;
+    padding: 0 8px 22px;
+    width: 286px;
+}
+
+.sidelist .game>* {
+    flex: none;
+}
+
+.sidelist .info {
+    flex: 1;
+    font-size: 12px;
+    padding-left: 8px;
+    color: gray;
+}
+
+.sidelist .game h4 {
+    width: 24px;
+    color: gray;
+    font-weight: 700;
+}
+
+.sidelist .top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.sidelist .title {
+    margin-bottom: 8px;
 }

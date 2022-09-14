@@ -77,12 +77,7 @@ function App() {
 
   function signOut () {
     auth.signOut();
-  }
-
-  async function updateUserData () {
-    const userRef = firestore.collection.doc(user.uid);
-    const user = await userRef.get();
-    setUserData(user.data());
+    setUserData(null);
   }
 
   return (
@@ -91,7 +86,7 @@ function App() {
         <div id='my-gaming-list'>
           <Nav signIn={signIn} signOut={signOut} firebase={firebase} />
           <Routes>
-            <Route path="/" element={<Home firebase={firebase} updateUserData={updateUserData}/>} />
+            <Route path="/" element={<Home firebase={firebase}/>} />
             <Route path="/profile/:id" element={<Profile/>}/>
             <Route path="/review/:id" element={<Review/>} />
             <Route path="/reviews" element={<Reviews/>}/> 

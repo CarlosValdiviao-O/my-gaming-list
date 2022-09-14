@@ -38,7 +38,7 @@ const UserNav = (props) => {
                 <div id='user-lists'>
                    { lists.map((list) => {
                         return (
-                            <Link key={lists.indexOf(list)} to={`/${list}/${user.uid}`}>
+                            <Link key={lists.indexOf(list)} to={`/${list}/${user.id}`}>
                                 <button >{list + ' List'}</button>
                             </Link>
                         )
@@ -53,10 +53,10 @@ const UserNav = (props) => {
                 </button>      
                 {optionsDisp === true ? 
                  <div id='user-options'>
-                        <Link to={`/profile/${user.uid}`}>
+                        <Link to={`/profile/${user.id}`}>
                             <button>Profile</button>
                         </Link>
-                        <Link to={`/reviews/${user.uid}`}>
+                        <Link to={`/reviews/${user.id}`}>
                             <button>Reviews</button>
                         </Link>
                         <Link to={`/`}>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect,  useState, useContext } from 'react';
 import { UserContext } from './../components/UserContext';
-import { getFirestore, collection, getDocs, addDoc,
-     serverTimestamp, where, update } from 'firebase/firestore';
+import {  collection, addDoc, serverTimestamp, } from 'firebase/firestore';
+import './AddGameButton.css';
 
 const AddGameButton = (props) => {
 
@@ -13,8 +13,11 @@ const AddGameButton = (props) => {
     const [ text, setText ] = useState('add');
     const [ showModal, setShowModal ] = useState(false);
     const [ status, setStatus ] = useState('Plan to Play');
-    const [ score, setScore ] = useState(null);
+    const [ score, setScore ] = useState(11);
     const [ data, setData ] = useState(null);
+    const [ topCoord, setTopCoord ] = useState(0);
+    const [ resultMessage, setResultMessage ] = useState('Wait please...');
+    const [ showResult, setShowResult ] = useState(false);
 
     useEffect(() => {
         if (type === 'review') formatReview();
@@ -65,7 +68,7 @@ const AddGameButton = (props) => {
         setData({
             gameName: gameData.name,
             gameId: gameData.id,
-            gameImg: gameData.mg,
+            gameImg: gameData.img,
             platforms: gameData.platforms,
             genres: gameData.genres,
             familyGames: gameData.familyGames,
@@ -75,22 +78,24 @@ const AddGameButton = (props) => {
     }
 
     const saveGame = async () => {
-        const gameRef = firestore.collection('userGames').where('gameId', '==', gameData.gameId).where('userId', '==', user.id);
+        setShowResult(true);
+        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
         const docSnapshot = await gameRef.get()
         let exists = false;
-        docSnapshot.forEach(doc => {
+        await docSnapshot.forEach(doc => {
             exists = true;
             if (doc.exists) {
                 doc.ref.update({
-                    score: +score,
+                    score: (score >= 1 && score <= 10) ? +score : null,
                     status: status,
                 })
+                setResultMessage('Succesfuly updated entry.');
             } 
         })   
         if (exists === false) {
             try {
                 await addDoc(collection(firestore, 'userGames'), {
-                    score: +score,
+                    score: (score >= 1 && score <= 10) ? +score : null,
                     status: status,
                     timestamp: serverTimestamp(),
                     gameName: data.gameName,
@@ -103,29 +108,34 @@ const AddGameButton = (props) => {
                     releaseDate: data.releaseDate,
                     gameDescription: data.gameDescription,
                 });
+                setResultMessage('Succesfuly added entry.');
             }
             
             catch (error) {
                 console.error('Error writing new message to Firebase Database', error);
             }
         }
-        setShowModal(false);
     }  
     
     const removeGame = async () => {
-        const gameRef = firestore.collection('userGames').where('gameId', '==', gameData.gameId).where('userId', '==', user.id);
+        setShowResult(true);
+        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
         const docSnapshot = await gameRef.get()
-        docSnapshot.forEach(doc => {
+        await docSnapshot.forEach(doc => {
             doc.ref.delete();           
         })
-        setShowModal(false);
+        setResultMessage('Succesfuly removed entry.')
         setText('add');
+        setScore(11);
     }    
 
-    const toggleModal = async () => {
+    const toggleModalOn = async () => {
+        setTopCoord(window.scrollY + 80);
+        setResultMessage('Wait please...');
+        setShowResult(false);
         setShowModal(true);
         if (text === 'edit') {
-            const gameRef = firestore.collection('userGames').where('gameId', '==', gameData.gameId).where('userId', '==', user.id);
+            const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
             const docSnapshot = await gameRef.get()
             docSnapshot.forEach(doc => {
                 setScore(doc.data().score);
@@ -134,9 +144,16 @@ const AddGameButton = (props) => {
         }
     }
 
+    const closeModal = () => {
+        setShowModal(false);
+        setResultMessage('Wait please...');
+        setStatus('Plan to Play');
+        setScore(11);
+    }
+
     if (showModal === false)
     return (
-        <button onClick={toggleModal}>
+        <button className='button-modal' onClick={toggleModalOn}>
             {text}
         </button>
     );
@@ -144,37 +161,55 @@ const AddGameButton = (props) => {
     else
     return (
         <div id='modal'>
-            <h3>Add Game to my List</h3>
-            <form>
-                <div id='title'>
-                    <p>Game Title</p>
-                    <Link to={`/game/${gameData.gameId}`}>{gameData.gameName}</Link>
+            <div className='background' onClick={closeModal}></div>
+            <div className='box' style={{top: topCoord}}>
+                <button className='close' onClick={closeModal}>x</button>
+                {(showResult === false) ?
+                <div className='border'>
+                    <div className='inner-box'>
+                        <h3>Add Game to my List</h3>
+                        <form>
+                            <div id='title'>
+                                <p>Game Title</p>
+                                <Link to={`/game/${data.gameId}`}>{data.gameName}</Link>
+                            </div>
+                            <div id='status'>
+                                <label>Status</label>
+                                <select onChange={(e) => setStatus(e.target.value)} value={status}>
+                                    {options.map(opt => {
+                                        return (
+                                            <option key={options.indexOf(opt)} value={opt}>{opt}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                            <div id='rating'>
+                                <label>Your Score</label>
+                                <select onChange={(e) => setScore(e.target.value)} value={score}>
+                                    <option key={11} value={11}>Select a score</option>
+                                    {scores.map(score => {
+                                        return (
+                                            <option key={scores.indexOf(score)} value={scores.indexOf(score) + 1}>{score}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
+                        </form>
+                        <div id='buttons'>
+                            <button className='input-button' onClick={saveGame}>Submit</button>
+                            {(text === 'edit') ? <button className='input-button' onClick={removeGame}>Remove</button> : ''}
+                        </div>
+                    </div>
                 </div>
-                <div id='status'>
-                    <label>Status</label>
-                    <select onChange={(e) => setStatus(e.target.value)} defaultValue={status}>
-                        {options.map(opt => {
-                            return (
-                                <option key={options.indexOf(opt)} value={opt}>{opt}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div id='rating'>
-                    <label>Your Score</label>
-                    <select onChange={(e) => setScore(e.target.value)} value={score}>
-                        <option key={11} value={null}>Select a score</option>
-                        {scores.map(score => {
-                            return (
-                                <option key={scores.indexOf(score)} value={scores.indexOf(score) + 1}>{score}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-            </form>
-            <div id='buttons'>
-                <button onClick={saveGame}>submit</button>
-                {(text === 'edit') ? <button onClick={removeGame}>remove</button> : ''}
+                :
+                <div className='resultBox'>
+                    <p>{resultMessage}</p>
+                    <div className='links'>
+                        <Link to={`/All Games/${user.id}`}>View my Games List</Link>
+                        <p>-</p>
+                        <Link to={`/game/${data.gameId}`}>Go to Game Page</Link>
+                    </div>
+                </div>}
             </div>
         </div>
     )

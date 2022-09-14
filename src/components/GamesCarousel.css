@@ -1,9 +1,6 @@
 .carousel {
     display: flex;
     width: 100%;
-}
-
-.carousel {
     position: relative;
     margin-top: 2px;
     overflow: hidden;
@@ -14,7 +11,7 @@
     width: 100%;
 }
 
-.game {
+.carousel .game {
     width: 160px !important;
     height: 220px;
     position: relative;
@@ -29,16 +26,16 @@
     transition-duration: .3s;
 }
 
-.game:hover {
+.carousel .game:hover {
     opacity: .8;
 }
 
-.game img {
+.carousel .game img {
     width: 300%;
     height: auto;
 }
 
-.game p {
+.carousel .game p {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -110,6 +107,9 @@
     opacity: 1;
 }
 
-.game .loading {
-    width: 30%;
+.empty-boxes {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-top: 2px;
 }

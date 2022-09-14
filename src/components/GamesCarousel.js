@@ -12,10 +12,9 @@ const GamesCarousel = (props) => {
         className: 'carousel',
         slidesToShow: 4,
         arrows: true, 
-        prevArrow: <div></div>
     })
+
     useEffect(() => {
-        if (games !== null) {
         filterData();
         setTimeout(() => {
             let buttons = divRef.current.querySelectorAll('button');
@@ -24,20 +23,13 @@ const GamesCarousel = (props) => {
                     node.textContent = '';
                 })
             })
-            // this removes the custom prevArrow element that if not declared 
-            // at first buttons are missing on the second carousel
-            setSettings({
-                arrowsScroll: 4,
-                className: 'carousel',
-                slidesToShow: 4,
-                arrows: true, 
-            })
         }, 500)
-        }
-    }, [items]);
+        
+    }, [games]);
     
     const filterData = () => {
         let aux = [];
+        if (games === null || items !== null) return;
         let count = (games.count > 20) ? 20 : games.count;
         for (let i = 0; i < count; i++) {
             aux[i] = {
@@ -52,11 +44,15 @@ const GamesCarousel = (props) => {
 
     const divRef = useRef();
 
-    const emptyBox = {
-        name: 'Fetching games..',
-        pic: Spinner,
+    let emptyBoxes = [];
+    for (let i = 0; i < 4; i++){
+        emptyBoxes[i] = {
+            name: 'Fetching games..',
+            pic: Spinner,
+            index: i,
+        }
     }
-    const emptyBoxes = [emptyBox, emptyBox, emptyBox, emptyBox];
+    
     return (
         <div ref={divRef} className='section'>
             <h3>{header}</h3>
@@ -72,16 +68,16 @@ const GamesCarousel = (props) => {
                 })}
             </Slider>
             :
-            <Slider { ...settings}>
+            <div className='empty-boxes carousel'>
                 {emptyBoxes.map(item => {
-                        return(
-                            <div key={emptyBoxes.indexOf(item)} className='game'>
-                                <img className='loading' src={item.pic} alt={item.name}></img>
-                                <p>{item.name}</p>
-                            </div>
-                        )
+                    return(
+                        <div key={item.index} className='game'>
+                            <img src={item.pic} alt={item.name}></img>
+                            <p>{item.name}</p>
+                        </div>
+                    )
                 })}
-            </Slider>}
+            </div>}
         </div>
     );
 };

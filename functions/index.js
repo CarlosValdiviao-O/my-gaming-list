@@ -43,6 +43,7 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
         name: data.gameName,
         id: data.gameId,
         score: (scoreExist === true) ? data.score : 0,
+        avgScore: (scoreExist === true) ? data.score : null,
         members: 1,
         numberOfScores: (scoreExist === true) ? 1 : 0,
         platforms: data.platforms,
@@ -54,9 +55,10 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     })}
     else {
       const newMembers = +game.data().members + 1;
-      const newScore = (scoreExist === true) ? +game.data().score + +data.score : game.data().score;
-      const newNumberOfScores = (scoreExist === true) ? +game.data().numberOfScores + 1 : game.data().numberOfScores;
-      transaction.update(gameRef, { members: newMembers, score: newScore, numberOfScores: newNumberOfScores });
+      const newScore = (scoreExist === true) ? +game.data().score + +data.score : +game.data().score;
+      const newNumberOfScores = (scoreExist === true) ? +game.data().numberOfScores + 1 : +game.data().numberOfScores;
+      const newAverage = (newScore > 0 && newNumberOfScores > 0) ? newScore/newNumberOfScores : null;
+      transaction.update(gameRef, { members: newMembers, score: newScore, numberOfScores: newNumberOfScores, avgScore: newAverage });
     }   
   });
 })
@@ -84,7 +86,8 @@ exports.onUpdateUserGameDoc = functions.firestore.document('userGames/{game}').o
         newScore = +game.data().score - +before.score + +after.score;
         newNumberOfScores = game.data().numberOfScores;
       }
-      transaction.update(gameRef, ({score: newScore, numberOfScores: newNumberOfScores}));
+      const newAverage = (newScore > 0 && newNumberOfScores > 0) ? newScore/newNumberOfScores : null;
+      transaction.update(gameRef, ({score: newScore, numberOfScores: newNumberOfScores, avgScore: newAverage}));
     })
   }
   else {
@@ -110,6 +113,7 @@ exports.onDeleteUserGameDoc = functions.firestore.document('userGames/{game}').o
       newNumberOfScores -= 1;
     }
     const newMembers = +game.data().members - 1;
-    transaction.update(gameRef, {members: newMembers, score: newScore, numberOfScores: newNumberOfScores})
+    const newAverage = (newScore > 0 && newNumberOfScores > 0) ? newScore/newNumberOfScores : null;
+    transaction.update(gameRef, {members: newMembers, score: newScore, numberOfScores: newNumberOfScores, avgScore: newAverage})
   })
 })

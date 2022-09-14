@@ -54,6 +54,24 @@ a, a:visited, #footer-message a, #footer-message a:visited {
     color: inherit;
 }
 
+button.input-button {
+    background-color: #4065ba;
+    border-bottom-color: #2e51a2;
+    border-bottom-width: 1px;
+    border-left-color: #6c8cd8;
+    border-left-width: 1px;
+    border-right-color: #2e51a2;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-color: #6c8cd8;
+    border-top-width: 1px;
+    color: #fff;
+    cursor: pointer;
+    font-family: lucida grande,tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    padding: 1px 3px;
+}
+
 button:hover, #user-nav>*:hover {
     cursor: pointer;
 }

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useContext } from 'react';
 import './ReviewsComponent.css';
 import { UserContext } from './../components/UserContext';
 import AddGameButton from './AddGameButton';
 
 const ReviewsComponent = (props) => {
-    const { reviews, header, firestore, updateUserData } = props;
+    const { reviews, header, firestore} = props;
     
     const user = useContext(UserContext);
 
@@ -18,14 +18,14 @@ const ReviewsComponent = (props) => {
                         let aux = (review.review.lenght > 349) ? '... ' : ' ';
                         return(
                             <div className='review' key={reviews.indexOf(review)}>
-                                <div className='image'>
+                                <Link className='image' to={`/game/${review.gameId}`}>
                                     <img src={review.gameImg} alt={review.gameName}></img>
-                                </div>
+                                </Link>
                                 <div className='info'>
                                     <div className='top'>
                                         <Link className='title' to={`/game/${review.gameId}`}>{review.gameName}</Link>
                                         {user ? <AddGameButton gameData={review} firestore={firestore}
-                                                   updateUserData={updateUserData} type={'review'}></AddGameButton> : ''}
+                                                   type={'review'}></AddGameButton> : ''}
                                         <p className='rating'>{`Overall Rating: ${review.rating}`}</p>
                                     </div>
                                     <p className='content'>{review.review.substring(0, 350) + aux}
