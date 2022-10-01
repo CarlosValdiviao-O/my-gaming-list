@@ -20,22 +20,22 @@
     text-align: left;
 }
 
-#columns {
+#home #columns {
     display: flex;
     padding: 8px 0;
 }
 
-#columns>.left {
+#home #columns>.left {
     min-width: 740px;
     flex-shrink: 0;
     border-right: 1px solid #bebebe;
 }
 
-.left>div, .right>div {
+#home .left>div, .right>div {
     margin: 0 10px 20px;
 }
 
-.left>.section h3 {
+#home .left>.section h3 {
     border-color: #bebebe;
     border-style: solid;
     border-width: 0 0 1px;
@@ -46,7 +46,7 @@
     padding: 3px 0;
 }
 
-#columns>.right {
+#home #columns>.right {
     min-width: 320px;
     flex-shrink: 0;
 }
@@ -83,7 +83,7 @@
 
 .user-game .top {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     margin: 3px 0;
     padding: 3px 0;

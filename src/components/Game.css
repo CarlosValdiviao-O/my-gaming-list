@@ -1,0 +1,549 @@
+#game-page h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 9px;
+    text-align: left;
+}
+
+#game-page #columns {
+    display: flex;
+    padding: 5px 10px 10px;
+    font-size: 11px;
+}
+
+#game-page #columns>.left {
+    width: 225px;
+    border-width: 0 1px 0 0; 
+    border-color: #e5e5e5;
+    border-style: solid;
+    padding: 3px;
+}
+
+#game-page #columns>.left>* {
+    width: 100%;
+}
+
+#game-page .image {
+    height: 318px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+#game-page .image img {
+    width: 300%;
+}
+
+#game-page .dropdown {
+    padding-top: 10px;
+}
+
+#game-page .dropdown>button {
+    color: #1c439b;
+    font-size: 11px;
+    width: 100%;
+    text-align: start;
+    padding: 4px 3px;
+    border-color: #92b0f1;
+    border-style: solid;
+    border-width: 0 0 1px;
+    cursor: pointer;
+    font-weight: 400;
+    background-color: white;
+}
+
+#game-page .dropdown>button:hover {
+    background-color: #1c439b;
+    color: white;
+}
+
+#game-page .quick-add {
+    transition: all .3s ease-in-out;
+    display: flex;
+}
+
+#game-page .left .no-user {
+    margin-top: 12px;
+    color: #787878;
+    word-wrap: normal;
+}
+
+#game-page .quick-add h4, #game-page .info h4, #game-page .right h4, #game-page .right h3 {
+    border-color: #bebebe;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 4px 0 5px;
+    padding: 3px 0;
+    display: flex;
+}
+
+#game-page .quick-add.hide {
+    transform: translateY(-50%) scaleY(0);
+    overflow: hidden;
+}
+
+#game-page .quick-add.side, #game-page .info {
+    padding-bottom: 16px;
+    padding-top: 8px;
+    border-color: #92b0f1;
+    border-style: solid;
+    border-width: 0 0 1px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#game-page .quick-add.side div{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    align-items: center;
+}
+
+#game-page .quick-add select, #game-page .quick-add button {
+    font-size: 11px;
+    width: fit-content;
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-width: 1px;
+    font-family: lucida grande,tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    padding: 2px;
+    cursor: pointer;
+}
+#game-page .quick-add.side button {
+    background-color: #4065ba;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+#game-page .info {
+    display: flex;
+    border-width: 0;
+}
+
+#game-page .info span {
+    color: #444;
+    font-weight: 700;
+}
+
+#game-page #columns>.right, #game-page .top .left {
+    flex: 1;
+}
+
+#game-page #columns>.right {
+    padding-right: 8px;
+    padding-top: 3px;
+}
+
+#game-page .right .tabs {
+    display: flex;
+    border-color: #1c439b;
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin-bottom: 10px;
+    width: 100%;
+    gap: 2px;
+    padding: 0 0 2px;
+}
+
+#game-page .tabs a {
+    color: #1c439b;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 2px 4px;
+}
+
+#game-page .tabs a.current, #game-page .tabs a:hover {
+    color: white;
+    background-color: #1c439b;
+}
+
+#game-page .details>div {
+    margin-bottom: 16px;
+}
+
+#game-page .right .top {
+    width: 100%;
+    display: flex;
+}
+
+#game-page .top .statistics {
+    background-color: #f8f8f8;
+    border: #e5e5e5 1px solid;
+    border-radius: 1px;
+    height: 86px;
+    padding: 8px 10px;
+    display: flex;
+}
+
+#game-page .top .score  {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    margin: 0 16px 0 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-page .score h5 {
+    background-color: #2e51a2;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 2px 12px;
+    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
+}
+
+#game-page .score h3 {
+    color: #323232;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+#game-page .score p {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+#game-page .statistics>.ranks {
+    border-width: 0 0 0 1px;
+    border-color: #e5e5e5;
+    border-style: solid;
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#game-page .ranks .ranks {
+    display: flex;
+    gap: 24px;
+    font-size: 16px;
+    color: #323232;
+    font-weight: bold;
+}
+
+#game-page .ranks .ranks span {
+    font-weight: normal;
+}
+
+#game-page .ranks .info {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    padding: 0;
+    height: 15px;
+    font-size: 10px;
+    color: #1c439b;
+}
+
+#game-page .ranks .platforms {
+    border-width: 0 0 0 1px;
+    border-color: #e5e5e5;
+    border-style: solid;
+    padding-left: 12px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+#game-page .ranks .info a:hover, #game-page .reviews-tab h4 span:hover {
+    text-decoration: underline;
+}
+
+#game-page .quick-add.center, #game-page .right .no-user {
+    margin-top: 8px;
+    background-color: #f8f8f8;
+    border: #e5e5e5 1px solid;
+    padding: 6px 0;
+    padding-left: 10px;
+    white-space: nowrap;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 40px;
+}
+
+#game-page .quick-add.center label {
+    display: none;
+}
+
+#game-page .quick-add.center select {
+    border: #bebebe 1px solid;
+    border-radius: 4px;
+    color: #2e51a2;
+    cursor: pointer;
+}
+
+#game-page .quick-add.center select:focus {
+    outline: none;
+}
+
+#game-page .quick-add.center select.completed, #game-page .quick-add.center select.playing {
+    border-color: #2db039;
+    color: #2db039;
+}
+
+#game-page .quick-add.center select.plan-to-play {
+    border-color: #8f8f8f;
+    color: #8f8f8f;
+}
+
+#game-page .quick-add.center select.on-hold {
+    border-color: #e7b715;
+    color: #e7b715;
+}
+
+#game-page .quick-add.center select.dropped {
+    border-color: #a12f31;
+    color: #a12f31;
+}
+
+#game-page .quick-add.center>div:last-child {
+    margin-left: auto;
+    margin-right: 16px;
+}
+
+#game-page .quick-add.center button {
+    background-color: #4f74c8;
+    border: #4f74c8 1px solid;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px 12px 6px 6px;
+    font-size: 11px;
+    transition: all ease-in-out .3s;
+}
+
+#game-page .quick-add.center button::before {
+    content: '+';
+    color: #858585;
+    border-radius: 1px;
+    background-color: white; margin-right: 6px;
+    font-weight: bolder;
+    padding: 0 2px;
+}
+
+#game-page .quick-add.center button:hover {
+   background-color: rgba(79,116,200,.8); 
+}
+
+#game-page .top video {
+    margin-left: 16px;
+}
+
+#game-page #columns>.right>div {
+    width: 100%;
+}
+
+#game-page .description div {
+    line-height: 1.5em;
+}
+
+#game-page .description br {
+    display: block;
+    content: ""; 
+    margin-top: 1.5rem; 
+}
+
+#game-page .review {
+    padding: 6px 0;
+    border: 0 solid #e5e5e5;
+    border-width: 0 0 1px;
+    display: flex;
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 100%;
+}
+
+#game-page .reviewer {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #bebebe;
+}
+
+#game-page .reviewer img {
+    width: 100%;
+    height: 100%;
+}
+
+#game-page .review .info {
+    gap: 0px;
+    padding: 0;
+    margin-left: 6px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#game-page .review .top {
+    margin: 2px 0 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-page .review .author {
+    color: #1c439b;
+    font-weight: 700;
+}
+
+#game-page .review .date {
+    color: #787878;
+}
+
+#game-page .review .recommended, #game-page .review .not-recommended, #game-page .review .mixed-feelings {
+    background-color: #f0f0f0;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    color: #26448f;
+    display: inline-block;
+    font-weight: 900;
+    padding: 3px 6px;
+    width: fit-content;
+    margin-bottom: 12px;
+}
+
+#game-page .review .recommended::before {
+    content: '★';
+    margin-right: 3px;
+}
+
+#game-page .review .not-recommended::before {
+    content: '☆';
+    margin-right: 3px;
+}
+
+#game-page .review .not-recommended {
+    color: #a12f31;
+}
+
+#game-page .review .mixed-feelings::before {
+    content: '⯪';
+    margin-right: 3px;
+}
+
+#game-page .review .mixed-feelings {
+    color: #787878;
+}
+
+#game-page .review .rating {
+    margin-top: 16px;
+    color: #323232;
+}
+
+#game-page .review .rating span {
+    color: #000;
+}
+
+#game-page .review .hide {
+    display: none;
+}
+
+#game-page .review .bottom {
+    margin: 16px 0 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#game-page .review .bottom>* {
+    background-color: transparent;
+    color: #787878;
+    transition-duration: .3s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    font-size: 11px;
+}
+
+#game-page .review .bottom>*:hover {
+    color: #1c439b;
+}
+
+#game-page .review .bottom .show-less::before {
+    content: '▴';
+    margin-right: 3px;
+    font-size: 15px;
+}
+
+#game-page .review .bottom .read-more::before {
+    content: '▾';
+    margin-right: 3px;
+    font-size: 15px;
+}
+
+#game-page .review .bottom a::before {
+    content: '↗';
+    margin-right: 3px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#game-page .review .edit {
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+#game-page .details.hide {
+    display: none;
+}
+
+#game-page .no-reviews {
+    margin: 6px 0 12px;
+}
+
+#game-page .reviews-tab h4 span {
+    margin-left: auto;
+    margin-right: 6px;
+    font-weight: 400;
+    color: #1c439b;
+    font-size: 11px;
+}
+
+#game-page .reviews-tab .pages-nav {
+    display: flex;
+    gap: 4px;
+    margin: 12px 0;
+}
+
+#game-page .reviews-tab .pages-nav button {
+    background-color: transparent;
+    color: #1c439b;
+    font-size: 11px;
+}
+
+#game-page .carousel .game {
+    width: 192px !important;
+    height: 264px;
+}
+
+#game-page .family-games .carousel .carousel-track {
+    height: 264px !important;
+}
+
+#game-page #loading {
+    max-height: 40px;
+    color: #1c439b !important;
+    font-weight: 400 !important;
+    margin-right: auto !important;
+    margin-left: 2px !important;
+}
+
+#game-page #loading img {
+    height: 16px;
+}

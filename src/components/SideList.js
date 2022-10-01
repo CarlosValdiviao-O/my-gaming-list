@@ -18,7 +18,6 @@ const SideList = (props) => {
             <div className='games'>
                 {(games !== null) ? 
                 games.map(game => {
-                    let score = (game.avgScore !== null) ? Math.floor(game.avgScore * 100) / 100 : 'pending';
                     return (
                         <div key={games.indexOf(game)} className='game'>
                             <h4>{games.indexOf(game) + 1}</h4>
@@ -31,8 +30,8 @@ const SideList = (props) => {
                                     <AddGameButton gameData={game} firestore={firestore}
                                         type={'game'}></AddGameButton>
                                 </div>
-                                <p>{'Scored ' + score}</p>
-                                <p>{`${game.members} members`}</p>
+                                <p>{'Scored ' + game.visibleScore.toFixed(2)}</p>
+                                <p>{`${game.visibleMembers} members`}</p>
                             </div>
                         </div>
                     )

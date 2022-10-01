@@ -52,6 +52,10 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
         familyGames: data.familyGames,
         img: data.gameImg,
         description: data.gameDescription,
+        trailerLink: data.trailerLink,
+        screenshots: data.screenshots,
+        reviewers: [],
+        reviews: 0,
     })}
     else {
       const newMembers = +game.data().members + 1;
@@ -68,6 +72,7 @@ exports.onUpdateUserGameDoc = functions.firestore.document('userGames/{game}').o
   const after = change.after.data();
   const gameRef = firestore.collection('games').doc(before.gameId);
   let needsUpdate = (before.score === after.score) ? false : true;
+  if (before.status !== after.status) needsUpdate = true;
 
   if (needsUpdate === true) {
     return firestore.runTransaction( async transaction => {
@@ -117,3 +122,67 @@ exports.onDeleteUserGameDoc = functions.firestore.document('userGames/{game}').o
     transaction.update(gameRef, {members: newMembers, score: newScore, numberOfScores: newNumberOfScores, avgScore: newAverage})
   })
 })
+
+exports.updateOnSchedule = functions.pubsub.schedule('5 0 * * *').onRun( async (context) => {
+  await updateScore();
+  await updatePopularity();
+  return new Promise;
+})
+
+async function updateScore () {
+  let counter = 1;
+  let keepGoing = true;
+  let firstGroup = true;
+  let lastDoc;
+  let gamesRef;
+  while(keepGoing === true) {
+    keepGoing = false;
+    if (firstGroup === true) {
+      firstGroup = false;
+      gamesRef = firestore.collection('games').orderBy('avgScore', 'desc').limit(500);      
+    }
+    else {
+      gamesRef = firestore.collection('games').orderBy('avgScore', 'desc').limit(500).startAfter(lastDoc);
+    }
+    const games = await gamesRef.get();
+    lastDoc = games.docs[games.docs.length-1];
+    games.docs.forEach((game) => {
+      keepGoing = true;
+      if (game.data().rank !== counter || game.data().avgScore !== game.data().visibleScore)
+      game.ref.update({
+        rank: counter,
+        visibleScore: game.data().avgScore,
+      })
+      counter++;
+    })
+  }
+}
+
+async function updatePopularity () {
+  let counter = 1;
+  let keepGoing = true;
+  let firstGroup = true;
+  let lastDoc;
+  let gamesRef;
+  while(keepGoing === true) {
+    keepGoing = false;
+    if (firstGroup === true) {
+      firstGroup = false;
+      gamesRef = firestore.collection('games').orderBy('members', 'desc').limit(500);      
+    }
+    else {
+      gamesRef = firestore.collection('games').orderBy('members', 'desc').limit(500).startAfter(lastDoc);
+    }
+    const games = await gamesRef.get();
+    lastDoc = games.docs[games.docs.length-1];
+    games.docs.forEach((game) => {
+      keepGoing = true;
+      if (game.data().popularity !== counter || game.data().members !== game.data().visibleMembers)
+      game.ref.update({
+        popularity: counter,
+        visibleMembers: game.data().members,
+      })
+      counter++;
+    })
+  }
+}

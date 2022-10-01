@@ -67,6 +67,7 @@ const SearchBar = (props) => {
             for ( let j = 0; j < 5; j++) {
                 if (data.results[i].platforms !== null)
                 if (data.results[i].platforms[j]) platforms += data.results[i].platforms[j].platform.name + ', ';
+                if (data.results[i].genres !== null)
                 if (data.results[i].genres[j]) genres += data.results[i].genres[j].name + ', ';
             }
             

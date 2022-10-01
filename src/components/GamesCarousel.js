@@ -15,7 +15,10 @@ const GamesCarousel = (props) => {
     })
 
     useEffect(() => {
-        filterData();
+        if (header === 'Related Games')
+        filterFirebaseData();
+        else
+        filterRawgData();
         setTimeout(() => {
             let buttons = divRef.current.querySelectorAll('button');
             buttons.forEach((button) => {
@@ -27,7 +30,7 @@ const GamesCarousel = (props) => {
         
     }, [games]);
     
-    const filterData = () => {
+    const filterRawgData = () => {
         let aux = [];
         if (games === null || items !== null) return;
         let count = (games.count > 20) ? 20 : games.count;
@@ -36,6 +39,19 @@ const GamesCarousel = (props) => {
                 name: games.results[i].name,
                 pic: games.results[i].background_image,
                 link: '/game/' + games.results[i].id,
+                index: i,
+            }
+        }
+        setItems(aux);
+    }
+
+    const filterFirebaseData = () => {
+        let aux = [];
+        for (let i = 0; i < games.length; i ++) {
+            aux[i] = {
+                name: games[i].name,
+                pic: games[i].img,
+                link: '/game/' + games[i].id,
                 index: i,
             }
         }

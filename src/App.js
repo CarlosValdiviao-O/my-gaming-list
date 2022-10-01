@@ -87,15 +87,17 @@ function App() {
           <Nav signIn={signIn} signOut={signOut} firebase={firebase} />
           <Routes>
             <Route path="/" element={<Home firebase={firebase}/>} />
-            <Route path="/profile/:id" element={<Profile/>}/>
-            <Route path="/review/:id" element={<Review/>} />
+            <Route path="/user/:id" element={<Profile/>}/>
+            <Route path="/review/:id" element={<Review editor={false}/>} />
+            <Route path="/review/:id/editor" element={<Review editor={true}/>} />
             <Route path="/reviews" element={<Reviews/>}/> 
             <Route path="/reviews/:id" element={<UserReviews/>}/>     
             <Route path="/:list/:id" element={<UserList/>}/> 
             <Route path="/top-games/:platform" element={<TopGames/>}/>  
             <Route path="/games-by-year/:year" element={<GamesByYear/>}/> 
             <Route path="/search/:platform/:text" element={<Search/>}/>
-            <Route path="/game/:id" element={<Game/>}/>  
+            <Route path="/game/:id" element={<Game firebase={firebase} tab='details'/>} />
+            <Route path="/game/:id/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>   
           </Routes>
         </div>
         <Footer/>

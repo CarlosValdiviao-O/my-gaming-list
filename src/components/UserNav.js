@@ -53,7 +53,7 @@ const UserNav = (props) => {
                 </button>      
                 {optionsDisp === true ? 
                  <div id='user-options'>
-                        <Link to={`/profile/${user.id}`}>
+                        <Link to={`/user/${user.id}`}>
                             <button>Profile</button>
                         </Link>
                         <Link to={`/reviews/${user.id}`}>

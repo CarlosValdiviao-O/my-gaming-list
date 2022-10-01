@@ -38,12 +38,10 @@ const ReviewsComponent = (props) => {
                     })
                 :
                 <div className='review'>
-                    <p className='content'>No reviews yet, be the first!</p>
+                    <p className='content'>Searching for the latest reviews..</p>
                 </div>
                 } 
             </div>
-            
-            
         </div>
     );
 };

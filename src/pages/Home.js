@@ -10,7 +10,7 @@ import LastUserUpdates from '../components/LastUserUpdates';
 import SideList from '../components/SideList';
 
 const Home = (props) => {
-    const { firebase, updateUserData } = props;
+    const { firebase } = props;
     const user = useContext(UserContext);
     const [ recentGames, setRecentGames ] = useState(null); 
     const [ recommendedGames, setRecommendedGames ] = useState(null);
@@ -56,13 +56,13 @@ const Home = (props) => {
     useEffect(() => {
         const aux = async () => {
             let topGames = [];
-            let topGamesRef = await firestore.collection('games').orderBy('avgScore', 'desc').limit(5).get();
+            let topGamesRef = await firestore.collection('games').orderBy('rank', 'asc').limit(5).get();
             topGamesRef.docs.forEach((doc) => {
                 topGames.push(doc.data());
             });
             setTopGames(topGames);
             let popularGames = [];
-            let popularGamesRef = await firestore.collection('games').orderBy('members', 'desc').limit(5).get();
+            let popularGamesRef = await firestore.collection('games').orderBy('popularity', 'asc').limit(5).get();
             popularGamesRef.docs.forEach((doc) => {
                 popularGames.push(doc.data());
             });

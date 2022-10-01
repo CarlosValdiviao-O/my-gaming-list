@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect,  useState, useContext } from 'react';
 import { UserContext } from './../components/UserContext';
-import {  collection, addDoc, serverTimestamp, } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, } from 'firebase/firestore';
 import './AddGameButton.css';
 
 const AddGameButton = (props) => {
@@ -61,6 +61,8 @@ const AddGameButton = (props) => {
             familyGames: gameData.familyGames,
             releaseDate: gameData.releaseDate,
             gameDescription: gameData.gameDescription,
+            trailerLink: gameData.trailerLink,
+            screenshots: gameData.screenshots,
         })
     }
 
@@ -74,6 +76,8 @@ const AddGameButton = (props) => {
             familyGames: gameData.familyGames,
             releaseDate: gameData.releaseDate,
             gameDescription: gameData.description,
+            trailerLink: gameData.trailerLink,
+            screenshots: gameData.screenshots,
         })
     }
 
@@ -107,6 +111,8 @@ const AddGameButton = (props) => {
                     familyGames: data.familyGames,
                     releaseDate: data.releaseDate,
                     gameDescription: data.gameDescription,
+                    trailerLink: data.trailerLink,
+                    screenshots: data.screenshots,
                 });
                 setResultMessage('Succesfuly added entry.');
             }
