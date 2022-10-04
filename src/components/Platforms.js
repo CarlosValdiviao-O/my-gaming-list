@@ -36,7 +36,7 @@ const Platforms = () => {
         {
             name: 'Microsoft',
             links: [
-                {name: 'Top Xbox Series S/X Games',  linkTo: '/top-games/xbox-series-s/x'},
+                {name: 'Top Xbox Series S/X Games',  linkTo: '/top-games/xbox-series-s-x'},
                 {name: 'Top Xbox One Games',  linkTo: '/top-games/xbox-one'},
                 {name: 'Top Xbox 360 Games',  linkTo: '/top-games/xbox-360'},
                 {name: 'Top Xbox Games', linkTo: '/top-games/xbox'},

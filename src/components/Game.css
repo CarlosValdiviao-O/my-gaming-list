@@ -41,7 +41,7 @@
 }
 
 #game-page .image img {
-    width: 300%;
+    height: 100%;
 }
 
 #game-page .dropdown {
@@ -78,7 +78,7 @@
     word-wrap: normal;
 }
 
-#game-page .quick-add h4, #game-page .info h4, #game-page .right h4, #game-page .right h3 {
+#game-page .quick-add h4, #game-page .info h4, #game-page .right h4, #game-page .right .section h3 {
     border-color: #bebebe;
     border-style: solid;
     border-width: 0 0 1px;
@@ -417,16 +417,20 @@
     padding: 3px 6px;
     width: fit-content;
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
 }
 
 #game-page .review .recommended::before {
     content: '★';
     margin-right: 3px;
+    font-size: 14px;
 }
 
 #game-page .review .not-recommended::before {
     content: '☆';
     margin-right: 3px;
+    font-size: 14px;
 }
 
 #game-page .review .not-recommended {
@@ -436,6 +440,7 @@
 #game-page .review .mixed-feelings::before {
     content: '⯪';
     margin-right: 3px;
+    font-size: 14px;
 }
 
 #game-page .review .mixed-feelings {
@@ -525,6 +530,10 @@
     background-color: transparent;
     color: #1c439b;
     font-size: 11px;
+}
+
+#game-page .reviews-tab .pages-nav button:hover {
+    text-decoration: underline;
 }
 
 #game-page .carousel .game {

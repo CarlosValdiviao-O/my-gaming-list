@@ -84,11 +84,6 @@ const QuickAdd = (props) => {
                 userId: user.id,
                 platforms: game.platforms,
                 genres: game.genres,
-                familyGames: game.familyGames,
-                releaseDate: game.releaseDate,
-                gameDescription: game.description,
-                trailerLink: game.trailerLink,
-                screenshots: game.screenshots,
             });
             buttonRef.current.disabled = false;
         }
@@ -125,7 +120,7 @@ const QuickAdd = (props) => {
             </div>
             <div>
                 <div></div>
-                <button onClick={saveGame} ref={buttonRef}>{text}</button>
+                <button onClick={saveGame} ref={buttonRef} className={text.toLowerCase()}>{text}</button>
             </div>
         </div>
     )

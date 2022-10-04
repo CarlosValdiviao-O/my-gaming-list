@@ -45,4 +45,4 @@ const ReviewComponent = (props) => {
     )
 }
 
-export default ReviewComponent
+export default ReviewComponent;

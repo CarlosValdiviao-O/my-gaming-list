@@ -9,7 +9,7 @@ const firestore = admin.firestore();
 exports.getRAWG = functions.https.onCall( async (data, context) => {
   let url = data.link + `&key=${rawg}`;
   let resp = await fetchData(url);
-  return resp;
+  return JSON.stringify(resp);
 });
 
 async function fetchData(url) {
@@ -19,7 +19,7 @@ async function fetchData(url) {
     response.next = null;
     response.previous = null;
   });
-  return JSON.stringify(response);
+  return response;
 }
 
 exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').onCreate((snapshot, context) => {
@@ -39,21 +39,23 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     })
     transaction.update(userRef, {lists: newLists, games: newGames});
     if (!game.exists) {
+      let game = await fetchGameData(data.gameId);
       transaction.set(gameRef, {
-        name: data.gameName,
-        id: data.gameId,
+        name: game.name,
+        id: game.id,
         score: (scoreExist === true) ? data.score : 0,
         avgScore: (scoreExist === true) ? data.score : null,
         members: 1,
         numberOfScores: (scoreExist === true) ? 1 : 0,
-        platforms: data.platforms,
-        genres: data.genres,
-        releaseDate: data.releaseDate,
-        familyGames: data.familyGames,
-        img: data.gameImg,
-        description: data.gameDescription,
-        trailerLink: data.trailerLink,
-        screenshots: data.screenshots,
+        platforms: game.platforms,
+        genres: game.genres,
+        releaseDate: game.releaseDate,
+        year: game.year,
+        familyGames: game.familyGames,
+        img: game.gameImg,
+        description: game.description,
+        trailerLink: game.trailerLink,
+        screenshots: game.screenshots,
         reviewers: [],
         reviews: 0,
     })}
@@ -66,6 +68,54 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     }   
   });
 })
+
+async function fetchGameData(id) {
+  const link = `https://api.rawg.io/api/games/${id}`;
+  const key = `&key=${rawg}`;
+  let game = await fetchData(link + '?' + key);
+  let familyGames = await fetchData(link + '/game-series?' + key);
+  let familyGamesArr = [];
+  familyGames.results.forEach(item => {
+      familyGamesArr.push({
+          id: item.id,
+          img: item.background_image,
+          name: item.name,
+      })
+  })
+  let screenshots = await fetchData(link + '/screenshots?' + key);
+  let screenshotsArr = [];
+  screenshots.results.forEach(item => {
+      screenshotsArr.push(item.image);
+  })
+  let trailer = await getRAWG(link + '/movies?' + key);
+  let trailerLink = (trailer.count > 0) ? trailer.results[0].data.max : null;
+
+  let platforms = [];
+  let genres = [];
+  if (game.platforms !== null) {
+    game.platforms.forEach(platform => {
+      platforms.push(platform.platform.name)
+    })
+  }
+  if (game.genres !== null) {
+    game.genres.forEach(genre => {
+      genres.push(genre.name)
+    })
+  }
+  return {
+    description: game.description.replace(/<\/p>\n<p>/g, '<br />'),
+    genres: genres,
+    familyGames: familyGamesArr,
+    id: id,
+    img: game.background_image,
+    name: game.name,
+    platforms: platforms,
+    releaseDate: (game.tba === false) ? game.released : 'TBA',
+    screenshots: screenshotsArr,
+    trailerLink: trailerLink,
+    year: (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).getFullYear() : 'TBA',
+  }
+}
 
 exports.onUpdateUserGameDoc = functions.firestore.document('userGames/{game}').onUpdate((change, context) => {
   const before = change.before.data();

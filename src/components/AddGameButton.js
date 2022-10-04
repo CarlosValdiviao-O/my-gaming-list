@@ -58,11 +58,6 @@ const AddGameButton = (props) => {
             gameImg: gameData.gameImg,
             platforms: gameData.platforms,
             genres: gameData.genres,
-            familyGames: gameData.familyGames,
-            releaseDate: gameData.releaseDate,
-            gameDescription: gameData.gameDescription,
-            trailerLink: gameData.trailerLink,
-            screenshots: gameData.screenshots,
         })
     }
 
@@ -73,11 +68,6 @@ const AddGameButton = (props) => {
             gameImg: gameData.img,
             platforms: gameData.platforms,
             genres: gameData.genres,
-            familyGames: gameData.familyGames,
-            releaseDate: gameData.releaseDate,
-            gameDescription: gameData.description,
-            trailerLink: gameData.trailerLink,
-            screenshots: gameData.screenshots,
         })
     }
 
@@ -108,11 +98,6 @@ const AddGameButton = (props) => {
                     userId: user.id,
                     platforms: data.platforms,
                     genres: data.genres,
-                    familyGames: data.familyGames,
-                    releaseDate: data.releaseDate,
-                    gameDescription: data.gameDescription,
-                    trailerLink: data.trailerLink,
-                    screenshots: data.screenshots,
                 });
                 setResultMessage('Succesfuly added entry.');
             }
@@ -159,7 +144,7 @@ const AddGameButton = (props) => {
 
     if (showModal === false)
     return (
-        <button className='button-modal' onClick={toggleModalOn}>
+        <button className={'button-modal ' + text} onClick={toggleModalOn}>
             {text}
         </button>
     );

@@ -333,6 +333,9 @@ h1 {
 
 .search-result:hover .image-container {
     height: 90px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .search-result:hover .title-date {
@@ -350,11 +353,12 @@ h1 {
 }
 
 #search-results .search-result:hover .image-container img {
-    width: 300%;
+    height: 100%;
+    width: auto;
 }
 
 #search-results .image-container img {
-    width: 100%;
+    width: 300%;
     height: auto;
 }
 
@@ -447,3 +451,24 @@ footer>div:last-child {
 footer a:hover {
     text-decoration: underline;
 }
+
+.bottom-note p:first-child{
+    color: #787878;
+    margin-bottom: 0.6rem;
+}
+
+.bottom-note button, .bottom-note a {
+    color: #1c439b;
+    font-size: 11px;
+    background-color: transparent;
+}
+
+.bottom-note button:hover, .bottom-note a:hover {
+    text-decoration: underline;
+} 
+
+.bottom-note .hide {
+    display: none;
+}
+
+

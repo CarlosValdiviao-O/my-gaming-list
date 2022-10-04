@@ -97,8 +97,8 @@ const AllGameReviews = (props) => {
             } 
             <div className='pages-nav'>
                 {(page !== 0) ? <button onClick={() => setPage(page-1)}>Previous</button> : ''}
-                {(page !== 0 && game.reviews > (page ) * 10) ? <p>-</p> : ''}
-                {(game.reviews > (page ) * 10) ? <button onClick={loadMore}>More Reviews</button> : ''}
+                {(page !== 0 && game.reviews > (page + 1) * 10) ? <p>-</p> : ''}
+                {(game.reviews > (page + 1) * 10) ? <button onClick={loadMore}>More Reviews</button> : ''}
             </div>          
         </div>
     )

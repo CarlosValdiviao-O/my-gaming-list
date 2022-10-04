@@ -71,7 +71,7 @@
 }
 
 .user-game .image img, .game .image img {
-    width: 300%;
+    height: 100%;
     flex-shrink: 0;
 }
 

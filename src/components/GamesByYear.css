@@ -1,0 +1,304 @@
+
+#games-by-year h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 9px;
+    text-align: left;
+}
+
+#games-by-year>div {
+    margin: 8px 5px;
+    font-size: 11px;
+}
+
+#games-by-year .years-nav {
+    display: flex;
+    margin: 16px 10px 12px;
+    border-bottom: #1c439b 1px solid;
+    font-size: 14px;
+    font-weight: 300;
+    justify-content: space-around;
+}
+
+#games-by-year .years-nav .years {
+    display: flex;
+    gap: 2px;
+    color: #1c439b;
+}
+
+#games-by-year .years a {
+    padding: 4px 8px;
+    transition: all .3s ease-in-out;
+}
+
+#games-by-year .years .current, #games-by-year .years a:hover {
+    background-color: #1c439b;
+    color: white;
+}
+
+#games-by-year .jump-to {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#games-by-year .jump-to input {
+    padding: 2px 4px;
+    width: 40px;
+    font-size: 11px;
+    border: 1px solid #d8d8d8;
+}
+
+#games-by-year .jump-to p:last-of-type, #games-by-year .jump-to a {
+    background-color: #4065ba;
+    border-bottom-color: #2e51a2;
+    border-bottom-width: 1px;
+    border-left-color: #6c8cd8;
+    border-left-width: 1px;
+    border-right-color: #2e51a2;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-color: #6c8cd8;
+    border-top-width: 1px;
+    color: #d8d8d8;
+    font-size: 11px;
+    position: relative;
+    padding: 2px 4px;
+}
+
+#games-by-year .jump-to a {
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    background-color: transparent;
+    border: 0;
+    top: 0;
+    left: 0;
+}
+
+#games-by-year .games {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 5px 10px 10px;
+}
+
+#games-by-year .game-card {
+    border: #f0f0f0 1px solid;
+    display: block;
+    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
+    height: 372px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    width: 336px;
+    font-size: 11px;
+}
+
+#games-by-year .game-card .header {
+    display: flex;
+    flex-direction: column;
+}
+
+#games-by-year .game-card h4 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #1c439b;
+}
+
+#games-by-year .game-card h4 a:hover {
+    text-decoration: underline;
+}
+
+#games-by-year .game-card .date {
+    justify-content: center;
+    height: 22px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+#games-by-year .game-card .genres {
+    background-color: #f0f0f0;
+    height: 27px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#games-by-year .game-card .genres p {
+    color: #787878;
+    background-color: #fff;
+    border: #e1e7f5 1px solid;
+    border-radius: 5px;
+    font-size: 9px;
+    padding: 1px 4px;
+}
+
+#games-by-year .game-card .content {
+    display: flex;
+    height: 236px;
+}
+
+#games-by-year .game-card .image {
+    height: 236px;
+    width: 167px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+#games-by-year .game-card .image img {
+    height: 100%;
+}
+
+#games-by-year .game-card .image .spinner {
+    height: 50%;
+}
+
+#games-by-year .game-card .info {
+    width: 167px;
+    line-height: 1.4em;
+    overflow: hidden;
+    padding: 6px 4px 0 8px;
+}
+
+#games-by-year .game-card .info br {
+    display: block;
+    content: ""; 
+    margin-top: 1.4rem; 
+}
+
+#games-by-year .game-card .info:hover {
+    overflow-y: scroll;
+}
+
+#games-by-year .game-card .info .short {
+    max-height: 180px;
+    overflow: hidden;
+}
+
+#games-by-year .game-card .info button {
+    font-weight: 900;
+    background-color: transparent;
+    margin-left: 48%;
+}
+
+#games-by-year .game-card .info>p {
+    margin: 4px 0 6px;
+    background-color: #f8f8f8;
+    padding: 2px;
+}
+
+#games-by-year .game-card .info>p span {
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+#games-by-year .game-card .info>p a {
+    color: #1c439b;
+    margin-right: 3px;
+}
+
+#games-by-year .game-card .info>p a:hover {
+    text-decoration: underline;
+}
+
+#games-by-year .game-card .info>p a:not(:last-child):after {
+    content: ',';
+}
+
+#games-by-year .game-card .bottom {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    height: 27px;
+}
+
+#games-by-year .game-card .bottom>p {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #545454;
+}
+
+#games-by-year .game-card .bottom .members img {
+    height: 60%;
+    margin-right: 3px;
+}
+
+#games-by-year .game-card .bottom>p span {
+    font-size: 14px;
+    margin-right: 3px;
+}
+
+#games-by-year .game-card .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+#games-by-year .game-card .buttons>button {
+    background-color: #4f74c8;
+    color: #4f74c8;
+    width: 96px;
+    border-radius: 3px;
+    height: 19px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+#games-by-year .game-card .buttons>button:hover {
+    opacity: .7;
+}
+
+#games-by-year .game-card .buttons>button::after {
+    content: 'Add to List';
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#games-by-year .game-card .buttons .edit::after {
+    content: 'Edit Game';
+}
+
+#games-by-year>.buttons {
+    display: flex;
+    gap: 4px;
+    margin: 0px 8px 12px;
+}
+
+#games-by-year>.buttons button {
+    background-color: transparent;
+    color: #1c439b;
+    font-size: 11px;
+}
+
+#games-by-year>.buttons button:hover {
+    text-decoration: underline;
+}
+
+#games-by-year .bottom-note {
+    margin: 8px 8px 12px;
+}

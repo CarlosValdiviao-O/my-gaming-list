@@ -27,8 +27,8 @@ const SideList = (props) => {
                             <div className='info'>
                                 <div className='top'>
                                     <Link className='title' to={`/game/${game.id}`}>{game.name}</Link>
-                                    <AddGameButton gameData={game} firestore={firestore}
-                                        type={'game'}></AddGameButton>
+                                    {user ? <AddGameButton gameData={game} firestore={firestore}
+                                        type={'game'}></AddGameButton> : ''}
                                 </div>
                                 <p>{'Scored ' + game.visibleScore.toFixed(2)}</p>
                                 <p>{`${game.visibleMembers} members`}</p>

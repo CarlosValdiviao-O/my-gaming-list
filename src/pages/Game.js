@@ -128,7 +128,7 @@ const Game = (props) => {
         })
         let date = (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).toDateString() : 'TBA';
         let year = (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).getFullYear() : 'TBA';
-        let score = (game.score > 0) ? game.visibleScore.toFixed(2) + ` (scored by ${game.numberOfScores} members)` : `~`;
+        let score = (game.visibleScore !== undefined && game.visibleScore !== null) ? game.visibleScore.toFixed(2) + ` (scored by ${game.numberOfScores} members)` : `~`;
         let rank = (game.rank !== undefined) ? game.rank : '~';
         let popularity = (game.popularity !== undefined) ? game.popularity : '~';
         let members = (game.visibleMembers !== undefined) ? game.visibleMembers : '~';
@@ -179,7 +179,7 @@ const Game = (props) => {
                                     <div className='statistics'>
                                         <div className='score'>
                                             <h5>SCORE</h5>
-                                            <h3>{(game.score > 0) ? game.visibleScore.toFixed(2) : '~'}</h3>
+                                            <h3>{(game.visibleScore !== undefined && game.visibleScore !== null)  ? game.visibleScore.toFixed(2) : '~'}</h3>
                                             <p>{game.numberOfScores + ' users'}</p>
                                         </div>
                                         <div className='ranks'>
@@ -195,7 +195,7 @@ const Game = (props) => {
                                                 <p>{year}</p>}
                                                 <div className='platforms'>
                                                     {(game.platforms.map(platform => {
-                                                        let link = platform.toLowerCase().replace(/ /g, '-');                                            
+                                                        let link = platform.toLowerCase().replace(/ /g, '-').replace('/', '-');                                            
                                                         return(
                                                             <Link key={game.platforms.indexOf(platform)} to={`/top-games/${link}`}>{platform}</Link>
                                                         )
@@ -258,17 +258,3 @@ const Game = (props) => {
 };
 
 export default Game;
-
-//left
-//  img
-//  if user 
-//      if in list edit status else dropdown to add to list
-//  info
-//  statistics
-//right
-//  statistics box
-//  if user add to list options
-//  description
-//  gameimages
-//  reviews
-//  familygames

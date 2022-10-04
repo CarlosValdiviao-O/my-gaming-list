@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from './../components/UserContext';
 import './../components/Home.css'
@@ -22,15 +21,15 @@ const Home = (props) => {
     const getRAWG = firebase.functions().httpsCallable('getRAWG');
     const firestore = firebase.firestore();
     let today = new Date();
-    let sixMonthsAgo = new Date(today);
-    if (today.getMonth() < 6) {
-        sixMonthsAgo.setMonth(today.getMonth() + 6);
-        sixMonthsAgo.setFullYear(today.getFullYear() - 1);
+    let threeMonthsAgo = new Date(today);
+    if (today.getMonth() < 3) {
+        threeMonthsAgo.setMonth(today.getMonth() + 9);
+        threeMonthsAgo.setFullYear(today.getFullYear() - 1);
     }
     else {
-        sixMonthsAgo.setMonth(today.getMonth() - 6);
+        threeMonthsAgo.setMonth(today.getMonth() - 3);
     }
-    const dates = `dates=${sixMonthsAgo.toISOString().substring(0, 10)},${today.toISOString().substring(0, 10)}`;
+    const dates = `dates=${threeMonthsAgo.toISOString().substring(0, 10)},${today.toISOString().substring(0, 10)}`;
 
     const fetchGames = async (link) => {
         let games = await getRAWG({link: link});
