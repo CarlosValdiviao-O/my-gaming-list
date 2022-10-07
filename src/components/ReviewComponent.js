@@ -21,12 +21,12 @@ const ReviewComponent = (props) => {
     }, [isLong])
     return(
         <div className='review'>
-            <Link className='reviewer' to={`/user/${review.userId}`}>
+            <Link className='reviewer' to={`/user/${review.userId}/${review.userName.replace(/\/| /g, '_')}`}>
                 <img src={review.userImg} alt={review.userName}></img>
             </Link>
             <div className='info'>
                 <div className='top'>
-                    <Link className='author' to={`/user/${review.userId}`}>{review.userName}</Link>
+                    <Link className='author' to={`/user/${review.userId}/${review.userName.replace(/\/| /g, '_')}`}>{review.userName}</Link>
                     <p className='date'>{review.createdAt.toDate().toDateString()}</p>
                 </div>
                 <p className={review.recommended.toLowerCase().replace(/ /g, '-')}>{review.recommended}</p>

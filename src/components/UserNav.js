@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
-import { getFirestore, getDoc, doc } from 'firebase/firestore';
 import List from './../icons/format-list-bulleted.svg';
 import ListLight from './../icons/format-list-bulleted-light.svg';
 import Arrow from './../icons/menu-down.svg';
@@ -37,9 +36,9 @@ const UserNav = (props) => {
                 {(listsDisp === true) ?
                 <div id='user-lists'>
                    { lists.map((list) => {
-                        let link = list.toLowerCase().replace(/ /g, '-').replace('/', '-'); 
+                        let link = list.toLowerCase().replace(/\/| /g, '-'); 
                         return (
-                            <Link key={lists.indexOf(list)} to={`/${link}/${user.id}`}>
+                            <Link key={lists.indexOf(list)} to={`/list/${link}/${user.id}/${user.name.replace(/\/| /g, '_')}`}>
                                 <button >{list + ' List'}</button>
                             </Link>
                         )
@@ -54,10 +53,10 @@ const UserNav = (props) => {
                 </button>      
                 {optionsDisp === true ? 
                  <div id='user-options'>
-                        <Link to={`/user/${user.id}`}>
+                        <Link to={`/user/${user.id}/${user.name.replace(/\/| /g, '_')}`}>
                             <button>Profile</button>
                         </Link>
-                        <Link to={`/reviews/${user.id}`}>
+                        <Link to={`/reviews/${user.id}/${user.name.replace(/\/| /g, '_')}`}>
                             <button>Reviews</button>
                         </Link>
                         <Link to={`/`}>

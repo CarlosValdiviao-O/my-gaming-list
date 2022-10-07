@@ -71,6 +71,16 @@ function App() {
       lists: ['All Games'],
       keyword: user.displayName.toLowerCase(),
       games: [],
+      stats: {
+        allGames: {
+          counter: 0,
+          playing: 0,
+          completed: 0,
+          onHold: 0,
+          dropped: 0,
+          planToPlay: 0,
+        }
+      }
     });
     checkUser();
   }
@@ -87,17 +97,17 @@ function App() {
           <Nav signIn={signIn} signOut={signOut} firebase={firebase} />
           <Routes>
             <Route path="/" element={<Home firebase={firebase}/>} />
-            <Route path="/user/:id" element={<Profile/>}/>
+            <Route path="/user/:id/:name" element={<Profile firebase={firebase}/>}/>
             <Route path="/review/:id" element={<Review editor={false}/>} />
             <Route path="/review/:id/editor" element={<Review editor={true}/>} />
             <Route path="/reviews" element={<Reviews/>}/> 
-            <Route path="/reviews/:id" element={<UserReviews/>}/>     
-            <Route path="/:list/:id" element={<UserList/>}/> 
+            <Route path="/reviews/:id/:name" element={<UserReviews/>}/>     
+            <Route path="/list/:list/:id/:name" element={<UserList/>}/> 
             <Route path="/top-games/:platform" element={<TopGames/>}/>  
             <Route path="/games-by-year/:year" element={<GamesByYear firestore={firestore}/>}/> 
             <Route path="/search/:platform/:text" element={<Search/>}/>
-            <Route path="/game/:id" element={<Game firebase={firebase} tab='details'/>} />
-            <Route path="/game/:id/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>   
+            <Route path="/game/:id/:name" element={<Game firebase={firebase} tab='details'/>} />
+            <Route path="/game/:id/:name/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>   
           </Routes>
         </div>
         <Footer/>

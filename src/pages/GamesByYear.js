@@ -83,7 +83,7 @@ const GamesByYear = (props) => {
                     <p>Jump to </p>
                     <input onChange={(e) => setJumpToVal(e.target.value)} 
                         placeholder='Year' maxLength={4}></input>
-                    <p><Link to={`/games-by-year/${jumpToVal}`}>{jumpToLink}</Link>Go</p>
+                    <p><Link className={(jumpToLink === '') ? 'hide' : ''} to={`/games-by-year/${jumpToVal}`}>{jumpToLink}</Link>Go</p>
                 </div>
             </div>
             <div className='games'>

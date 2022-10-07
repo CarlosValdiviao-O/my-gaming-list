@@ -69,6 +69,7 @@ const QuickAdd = (props) => {
             await userDoc.ref.update({
                 score: (score >= 1 && score <= 10) ? +score : null,
                 status: status,
+                timestamp: serverTimestamp(),
             })
             buttonRef.current.disabled = false;
         } 

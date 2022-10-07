@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect,  useState, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from './UserContext';
 import AddGameButton from './AddGameButton';
 
@@ -21,12 +21,12 @@ const SideList = (props) => {
                     return (
                         <div key={games.indexOf(game)} className='game'>
                             <h4>{games.indexOf(game) + 1}</h4>
-                            <Link className='image' to={`game/${game.id}`}>
+                            <Link className='image' to={`game/${game.id}/${game.name.replace(/\/| /g, '_')}`}>
                                 <img src={game.img}></img>
                             </Link>
                             <div className='info'>
                                 <div className='top'>
-                                    <Link className='title' to={`/game/${game.id}`}>{game.name}</Link>
+                                    <Link className='title' to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`}>{game.name}</Link>
                                     {user ? <AddGameButton gameData={game} firestore={firestore}
                                         type={'game'}></AddGameButton> : ''}
                                 </div>

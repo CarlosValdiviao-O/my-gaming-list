@@ -27,6 +27,7 @@ const AddGameButton = (props) => {
     useEffect(() => {
         if (user && data) {
             if (user.games.includes(data.gameId)) setText('edit');
+            else setText('add');
         }
     }, [user, data])
 
@@ -82,6 +83,7 @@ const AddGameButton = (props) => {
                 doc.ref.update({
                     score: (score >= 1 && score <= 10) ? +score : null,
                     status: status,
+                    timestamp: serverTimestamp(),
                 })
                 setResultMessage('Succesfuly updated entry.');
             } 
@@ -162,7 +164,7 @@ const AddGameButton = (props) => {
                         <form>
                             <div id='title'>
                                 <p>Game Title</p>
-                                <Link to={`/game/${data.gameId}`}>{data.gameName}</Link>
+                                <Link to={`/game/${data.gameId}/${data.gameName.replace(/\/| /g, '_')}`}>{data.gameName}</Link>
                             </div>
                             <div id='status'>
                                 <label>Status</label>
@@ -196,9 +198,9 @@ const AddGameButton = (props) => {
                 <div className='resultBox'>
                     <p>{resultMessage}</p>
                     <div className='links'>
-                        <Link to={`/All Games/${user.id}`}>View my Games List</Link>
+                        <Link to={`/list/all-games/${user.id}/${user.name.replace(/\/| /g, '_')}`}>View my Games List</Link>
                         <p>-</p>
-                        <Link to={`/game/${data.gameId}`}>Go to Game Page</Link>
+                        <Link to={`/game/${data.gameId}/${data.gameName.replace(/\/| /g, '_')}`}>Go to Game Page</Link>
                     </div>
                 </div>}
             </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from './UserContext';
 import AddGameButton from './AddGameButton';
 import Icon from './../icons/user.svg';
@@ -16,7 +16,7 @@ const GameCard = (props) => {
     return(
         <div className='game-card'>
             <div className='header'>
-                <h4><Link to={`/game/${game.id}`}>{game.name}</Link></h4>
+                <h4><Link to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`}>{game.name}</Link></h4>
                 <p className='date'>{date}</p>
                 <div className='genres'>
                     {game.genres.map(genre => {
@@ -27,7 +27,7 @@ const GameCard = (props) => {
                 </div>
             </div>
             <div className='content'>
-                <Link to={`/game/${game.id}`} className='image'>
+                <Link to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`} className='image'>
                     <img src={game.img} alt={game.name}></img>
                 </Link>
                 <div className='info'>

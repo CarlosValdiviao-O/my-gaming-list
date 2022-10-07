@@ -18,12 +18,12 @@ const ReviewsComponent = (props) => {
                         let aux = (review.review.lenght > 349) ? '... ' : ' ';
                         return(
                             <div className='review' key={reviews.indexOf(review)}>
-                                <Link className='image' to={`/game/${review.gameId}`}>
+                                <Link className='image' to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`}>
                                     <img src={review.gameImg} alt={review.gameName}></img>
                                 </Link>
                                 <div className='info'>
                                     <div className='top'>
-                                        <Link className='title' to={`/game/${review.gameId}`}>{review.gameName}</Link>
+                                        <Link className='title' to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`}>{review.gameName}</Link>
                                         {user ? <AddGameButton gameData={review} firestore={firestore}
                                                    type={'review'}></AddGameButton> : ''}
                                         <p className='rating'>{`Overall Rating: ${review.rating}`}</p>
@@ -31,7 +31,7 @@ const ReviewsComponent = (props) => {
                                     <p className='content'>{review.review.substring(0, 350) + aux}
                                         <Link className='read-more' to={`/review/${review.id}`}>read more</Link></p>
                                     <p className='bottom'>{review.createdAt.toDate().toDateString() + ' by '} 
-                                        <Link className='author' to={`/user/${review.userId}`}>{review.userName}</Link></p>
+                                        <Link className='author' to={`/user/${review.userId}/${review.userName.replace(/\/| /g, '_')}`}>{review.userName}</Link></p>
                                 </div>
                             </div>
                         )

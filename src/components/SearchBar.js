@@ -78,7 +78,7 @@ const SearchBar = (props) => {
                 releaseDate: (data.results[i].tba === false) ? new Date(data.results[i].released).getFullYear() : 'TBA',
                 genres: (genres !== '') ? genres.slice(0, genres.length - 2) : '',
                 game: true,
-                link: '/game/' + data.results[i].id,
+                link: '/game/' + data.results[i].id + '/' + data.results[i].name.replace(/\/| /g, '_'),
             }
         }
         setSearchResults(aux);
@@ -91,7 +91,7 @@ const SearchBar = (props) => {
                 name: item.name, 
                 pic: item.pic,
                 game: false,
-                link: '/profile/' + item.id,
+                link: '/user/' + item.id + '/' + item.name.replace(/\/| /g, '_'),
             })  
         });
         setSearchResults(aux);
@@ -111,7 +111,7 @@ const SearchBar = (props) => {
                 })}
             </select>
             <div id='search-container'>
-                <input onFocus={() => setDispRes(true)} onChange={(e) => setSearchVal(e.target.value)} 
+                <input onKeyDown={(e) => (e.keyCode === 13) ? fetchSearch() : ''} onFocus={() => setDispRes(true)} onChange={(e) => setSearchVal(e.target.value)} 
                     placeholder='Search Games...'></input>
                 <div ref={divRef} id='search-results' className={(dispRes === true) ? '' : 'hide'}>
                     {(dispRes === true && searchResults !== '') ? 

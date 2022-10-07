@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect,  useState, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from './../components/UserContext';
 import AddGameButton from './AddGameButton';
 
@@ -17,12 +17,12 @@ const LastUserUpdates = (props) => {
                 games.map(game => {
                     return (
                         <div key={games.indexOf(game)} className='user-game'>
-                            <Link className='image' to={`game/${game.gameId}`}>
+                            <Link className='image' to={`game/${game.gameId}/${game.gameName.replace(/\/| /g, '_')}`}>
                                 <img src={game.gameImg}></img>
                             </Link>
                             <div className='info'>
                                 <div className='top'>
-                                    <Link className='title' to={`/game/${game.gameId}`}>{game.gameName}</Link>
+                                    <Link className='title' to={`/game/${game.gameId}/${game.gameName.replace(/\/| /g, '_')}`}>{game.gameName}</Link>
                                     <AddGameButton gameData={game} firestore={firestore}
                                         type={'review'}></AddGameButton>
                                 </div>

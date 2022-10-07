@@ -33,11 +33,25 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     const game = await transaction.get(gameRef);
     const userDoc = user.data();
     let newLists = userDoc.lists;
+    let newStats = userDoc.stats;
     const newGames = userDoc.games.concat(data.gameId);
+    newStats['allGames'][toCamelCase(data.status)] += 1;
+    newStats['allGames']['counter'] += 1;
     data.platforms.forEach(plat => {
-      if (!newLists.includes(plat)) newLists.push(plat);   
+      if (!newLists.includes(plat)) newLists.push(plat);  
+      if (newStats[toCamelCase(plat)] === undefined)      
+      newStats[toCamelCase(plat)] = {
+        counter: 0,
+        playing: 0,
+        completed: 0,
+        onHold: 0,
+        dropped: 0,
+        planToPlay: 0,
+      }
+      newStats[toCamelCase(plat)][toCamelCase(data.status)] += 1;
+      newStats[toCamelCase(plat)]['counter'] += 1;
     })
-    transaction.update(userRef, {lists: newLists, games: newGames});
+    transaction.update(userRef, {lists: newLists, games: newGames, stats: newStats});
     if (!game.exists) {
       let game = await fetchGameData(data.gameId);
       transaction.set(gameRef, {
@@ -52,7 +66,7 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
         releaseDate: game.releaseDate,
         year: game.year,
         familyGames: game.familyGames,
-        img: game.gameImg,
+        img: game.img,
         description: game.description,
         trailerLink: game.trailerLink,
         screenshots: game.screenshots,
@@ -68,6 +82,13 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     }   
   });
 })
+
+function toCamelCase(str) {
+  return str.replace('-', ' ').replace(/(?:^\w|[A-Z]|\b\w|\s+|\/)/g, function(match, index) {
+    if (+match === 0) return ""; 
+    return index === 0 ? match.toLowerCase() : match.toUpperCase();
+  })
+}
 
 async function fetchGameData(id) {
   const link = `https://api.rawg.io/api/games/${id}`;
@@ -87,7 +108,7 @@ async function fetchGameData(id) {
   screenshots.results.forEach(item => {
       screenshotsArr.push(item.image);
   })
-  let trailer = await getRAWG(link + '/movies?' + key);
+  let trailer = await fetchData(link + '/movies?' + key);
   let trailerLink = (trailer.count > 0) ? trailer.results[0].data.max : null;
 
   let platforms = [];
@@ -113,7 +134,7 @@ async function fetchGameData(id) {
     releaseDate: (game.tba === false) ? game.released : 'TBA',
     screenshots: screenshotsArr,
     trailerLink: trailerLink,
-    year: (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).getFullYear() : 'TBA',
+    year: (game.released !== 'TBA') ? new Date(game.released).getFullYear() : 'TBA',
   }
 }
 
@@ -121,12 +142,22 @@ exports.onUpdateUserGameDoc = functions.firestore.document('userGames/{game}').o
   const before = change.before.data();
   const after = change.after.data();
   const gameRef = firestore.collection('games').doc(before.gameId);
+  const userRef = firestore.collection('users').doc(before.userId);
   let needsUpdate = (before.score === after.score) ? false : true;
   if (before.status !== after.status) needsUpdate = true;
 
   if (needsUpdate === true) {
     return firestore.runTransaction( async transaction => {
       const game = await transaction.get(gameRef);
+      const user = await transaction.get(userRef);
+      let newStats = user.data().stats;
+      newStats['allGames'][toCamelCase(before.status)] -= 1;
+      newStats['allGames'][toCamelCase(after.status)] += 1;
+      before.platforms.forEach(plat => {  
+        newStats[toCamelCase(plat)][toCamelCase(before.status)] -= 1;
+        newStats[toCamelCase(plat)][toCamelCase(after.status)] += 1;
+      })
+      transaction.update(userRef, {stats: newStats});
       let newScore;
       let newNumberOfScores;
       if (before.score === null) {
@@ -159,8 +190,18 @@ exports.onDeleteUserGameDoc = functions.firestore.document('userGames/{game}').o
     const user = await transaction.get(userRef);
     const game = await transaction.get(gameRef);
     let newGames = user.data().games;
+    let newStats = user.data().stats;
+    let newLists = user.data().lists;
+    newStats['allGames'][toCamelCase(data.status)] -= 1;
+    newStats['allGames']['counter'] -= 1;
+    data.platforms.forEach(plat => {  
+      newStats[toCamelCase(plat)][toCamelCase(data.status)] -= 1;
+      newStats[toCamelCase(plat)]['counter'] -= 1;
+      if (newStats[toCamelCase(plat)]['counter'] === 0)
+      newLists.splice(newLists.indexOf(plat), 1);
+    })
     newGames.splice(newGames.indexOf(data.gameId), 1);
-    transaction.update(userRef, {games: newGames});
+    transaction.update(userRef, {games: newGames, stats: newStats, lists: newLists});
     let newScore = game.data().score;
     let newNumberOfScores = +game.data().numberOfScores;
     if (data.score !== null) {

@@ -38,7 +38,7 @@ const GamesCarousel = (props) => {
             aux[i] = {
                 name: games.results[i].name,
                 pic: games.results[i].background_image,
-                link: '/game/' + games.results[i].id,
+                link: '/game/' + games.results[i].id + '/' + games.results[i].name.replace(/\/| /g, '_'),
                 index: i,
             }
         }
@@ -51,7 +51,7 @@ const GamesCarousel = (props) => {
             aux[i] = {
                 name: games[i].name,
                 pic: games[i].img,
-                link: '/game/' + games[i].id,
+                link: '/game/' + games[i].id + '/' + games[i].name.replace(/\/| /g, '_'),
                 index: i,
             }
         }

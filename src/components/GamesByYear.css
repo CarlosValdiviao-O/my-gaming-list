@@ -86,6 +86,10 @@
     left: 0;
 }
 
+#games-by-year .jump-to a.hide {
+    display: none;
+}
+
 #games-by-year .games {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

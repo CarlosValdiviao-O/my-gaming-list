@@ -1,0 +1,246 @@
+#profile h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 9px;
+    text-align: left;
+}
+
+#profile #columns {
+    display: flex;
+    padding: 5px 10px 10px;
+    font-size: 11px;
+}
+
+#profile #columns>.left {
+    width: 234px;
+    border-width: 0 1px 0 0; 
+    border-color: #e5e5e5;
+    border-style: solid;
+    padding: 3px;
+}
+
+#profile #columns>.left>* {
+    width: 100%;
+}
+
+#profile .image {
+    height: 225px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+#profile .image img {
+    height: 100%;
+}
+
+#profile .left h4 {
+    border-color: #bebebe;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 4px 0 5px;
+    padding: 3px 0;
+}
+
+#profile .lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#profile .lists .list {
+    background-color: #4065ba;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-family: Avenir,sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition:all .3s ease-in-out;
+    width: 110px;
+    margin-bottom: 6px;
+}
+
+#profile .right, #profile .stats-box>div {
+    flex: 1;
+}
+
+#profile .right .stats h4 {
+    border-color: #bebebe;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 4px 0 5px;
+    padding: 3px 0;
+}
+
+#profile .stats .stats-box {
+    display: flex;
+    margin-top: 12px;
+    gap: 8px;
+    color: #787887;
+}
+
+#profile .stats .stats-box div h4 {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 4px;
+    padding: 2px 0;
+}
+
+#profile .stats>p {
+    padding-top: 8px;
+    width: 100%;
+    text-align: end;
+    font-size: 12px;
+    color: #787887;
+    font-weight: 400;
+    padding-right: 8px;
+}
+
+#profile .stats>p span {
+    color: #000;
+    font-weight: 700;
+}
+
+#profile .stats .stats-bar {
+    background-color: #f8f8f8;
+    border-radius: 2px;
+    display: flex;
+    height: 18px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 380px;
+    margin-top: 8px;
+}
+
+#profile .stats .stats-bar div {
+    height: 18px;
+}
+
+#profile .stats-bar .playing, #profile .playing .circle {
+    background-color: #2db039;
+}
+
+#profile .stats-bar .completed, #profile .completed .circle {
+    background-color: #26448f;
+}
+
+#profile .stats-bar .on-hold, #profile .on-hold .circle {
+    background-color: #f9d457;
+}
+
+#profile .stats-bar .dropped, #profile .dropped .circle {
+    background-color: #a12f31;
+}
+
+#profile .stats-bar .plan-to-play, #profile .plan-to-play .circle {
+    background-color: #c3c3c3;
+}
+
+#profile .stats-box .stats-data {
+    margin: 0 auto;
+    width: 380px;
+    margin-top: 8px;
+}
+
+#profile .stats-data>div {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 8px;
+    width: 50%;
+}
+
+#profile .stats-data .circle, #profile .circle {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+#profile .circle {
+    height: 8px;
+    width: 8px;
+    margin-right: 4px;
+    display: inline-block;
+}
+
+#profile .stats-data p:last-of-type {
+    margin-left: auto;
+    color: #000;
+}
+
+#profile .last-updates h4 {
+    margin-bottom: 12px !important;
+}
+
+#profile .last-updates .user-game {
+    margin: 0 0 8px;
+    border: 0;
+    padding: 0;
+}
+
+#profile .user-game .image {
+    width: 40px;
+    height: 60px;
+    margin: 0 6px 0 0;
+    transition: all ease-in-out .3s;
+}
+
+#profile .user-game .image:hover {
+    opacity: .7;
+}
+
+#profile .user-game .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#profile .user-game .info p {
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+}
+
+#profile .user-game .title {
+    font-weight: 400;
+}
+
+#profile .score span {
+    color: #26448f;
+    font-weight: 700;
+}
+
+#profile #loading {
+    max-height: 40px;
+    color: #1c439b !important;
+    font-weight: 400 !important;
+    margin-right: auto !important;
+    margin-left: 2px !important;
+}
+
+#profile #loading img {
+    height: 16px;
+}

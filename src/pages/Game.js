@@ -128,7 +128,7 @@ const Game = (props) => {
         })
         let date = (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).toDateString() : 'TBA';
         let year = (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).getFullYear() : 'TBA';
-        let score = (game.visibleScore !== undefined && game.visibleScore !== null) ? game.visibleScore.toFixed(2) + ` (scored by ${game.numberOfScores} members)` : `~`;
+        let score = (game.visibleScore !== undefined && game.visibleScore !== null && game.visibleScore !== '~') ? game.visibleScore.toFixed(2) + ` (scored by ${game.numberOfScores} members)` : `~`;
         let rank = (game.rank !== undefined) ? game.rank : '~';
         let popularity = (game.popularity !== undefined) ? game.popularity : '~';
         let members = (game.visibleMembers !== undefined) ? game.visibleMembers : '~';
@@ -170,8 +170,8 @@ const Game = (props) => {
                     </div>
                     <div className='right'>
                         <div className='tabs'>
-                            <Link to={`/game/${id}`} className={(tab === 'details') ? 'current' : ''}>Details</Link>
-                            <Link to={`/game/${id}/reviews`} className={(tab === 'reviews') ? 'current' : ''}>Reviews</Link>
+                            <Link to={`/game/${id}/${game.name.replace(/\/| /g, '_')}`} className={(tab === 'details') ? 'current' : ''}>Details</Link>
+                            <Link to={`/game/${id}/${game.name.replace(/\/| /g, '_')}/reviews`} className={(tab === 'reviews') ? 'current' : ''}>Reviews</Link>
                         </div>
                         <div className={(tab === 'details') ? 'details' : 'details hide'}>
                             <div className='top'>
@@ -179,7 +179,7 @@ const Game = (props) => {
                                     <div className='statistics'>
                                         <div className='score'>
                                             <h5>SCORE</h5>
-                                            <h3>{(game.visibleScore !== undefined && game.visibleScore !== null)  ? game.visibleScore.toFixed(2) : '~'}</h3>
+                                            <h3>{(game.visibleScore !== undefined && game.visibleScore !== null && game.visibleScore !== '~')  ? game.visibleScore.toFixed(2) : '~'}</h3>
                                             <p>{game.numberOfScores + ' users'}</p>
                                         </div>
                                         <div className='ranks'>
@@ -195,7 +195,7 @@ const Game = (props) => {
                                                 <p>{year}</p>}
                                                 <div className='platforms'>
                                                     {(game.platforms.map(platform => {
-                                                        let link = platform.toLowerCase().replace(/ /g, '-').replace('/', '-');                                            
+                                                        let link = platform.toLowerCase().replace(/\/| /g, '-');                                            
                                                         return(
                                                             <Link key={game.platforms.indexOf(platform)} to={`/top-games/${link}`}>{platform}</Link>
                                                         )
