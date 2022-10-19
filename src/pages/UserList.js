@@ -15,3 +15,7 @@ const UserList = () => {
 };
 
 export default UserList;
+
+//'x-box-series-x-s'.replace(/(?:^\w|[A-Z]|\b\w|\s+|\/)/g, function(match, index) {
+//    return  match.toUpperCase();
+//}).replace(/X-S/g, 'X/S').replace(/-/g, ' ')

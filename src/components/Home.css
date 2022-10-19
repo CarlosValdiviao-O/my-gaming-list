@@ -26,12 +26,12 @@
 }
 
 #home #columns>.left {
-    min-width: 740px;
+    width: 740px;
     flex-shrink: 0;
     border-right: 1px solid #bebebe;
 }
 
-#home .left>div, .right>div {
+#home .left>div, #home .right>div {
     margin: 0 10px 20px;
 }
 

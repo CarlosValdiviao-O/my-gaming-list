@@ -6,6 +6,7 @@
     padding-bottom: 0.5em;
     width: 100%;
     gap: 8px;
+    padding: 0 0 0.5em;
 }
 
 #home .review .image {
@@ -26,16 +27,20 @@
     flex: 1;
     font-size: 11px;
     line-height: 9px;
+    display: block;
+    margin-left: 0;
 }
 
 #home .review .top {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 3px 0;
-    padding: 3px 0;
+    margin: 0 0 6px;
     gap: 5px;
-    height: 21px;
+}
+
+#home .review .top button {
+    margin: 0;
 }
 
 #home .review .title {
@@ -47,26 +52,38 @@
     text-decoration: underline;
 }
 
+#home .review .rating, #home .review .bottom {
+    color: #888;
+    font-size: 10px;
+    margin: 0;
+}
+
 #home .review .rating {
     margin-left: auto;
 }
 
-#home .review .rating, .review .bottom {
-    color: #888;
-    font-size: 10px;
-}
-
 #home .review .content {
-    margin: 3px 0;
-    padding: 3px 0;
     line-height: 16.5px;
     font-size: 11px;
+    white-space: normal;
 }
 
-#home .review .read-more, .review .author {
+#home .review .bottom {
+    margin-top: 6px;
+    gap: 3px;
+    align-items: flex-end;
+}
+
+#home .review .read-more, #home .review .author {
     color: #1c439b;
+    font-weight: 400;
 }
 
 #home .review .read-more:hover, .review .author:hover {
     text-decoration: underline;
+}
+
+#home .review .author::before {
+    margin: 0;
+    content: '';
 }

@@ -14,8 +14,8 @@ const ReviewsComponent = (props) => {
             <h3>{header}</h3>
             <div>
                 {(reviews !== null) ?
-                    reviews.map(review => {
-                        let aux = (review.review.lenght > 349) ? '... ' : ' ';
+                    reviews.map(review => {                     
+                        let aux = (review.review.length > 349) ? '... ' : ' ';
                         return(
                             <div className='review' key={reviews.indexOf(review)}>
                                 <Link className='image' to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`}>

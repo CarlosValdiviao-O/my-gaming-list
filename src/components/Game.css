@@ -33,6 +33,10 @@
     width: 100%;
 }
 
+#game-page #columns>.right>*{
+    margin: 0 10px 20px;
+}
+
 #game-page .image {
     height: 318px;
     overflow: hidden;
@@ -96,8 +100,8 @@
     overflow: hidden;
 }
 
-#game-page .quick-add.side, #game-page .info {
-    padding-bottom: 16px;
+#game-page .quick-add.side, #game-page .left .info {
+    padding-bottom: 14px;
     padding-top: 8px;
     border-color: #92b0f1;
     border-style: solid;
@@ -130,7 +134,7 @@
     padding: 4px 8px;
 }
 
-#game-page .info {
+#game-page .left .info {
     display: flex;
     border-width: 0;
 }
@@ -361,148 +365,6 @@
     display: block;
     content: ""; 
     margin-top: 1.5rem; 
-}
-
-#game-page .review {
-    padding: 6px 0;
-    border: 0 solid #e5e5e5;
-    border-width: 0 0 1px;
-    display: flex;
-    margin-top: 0.5em;
-    padding-bottom: 0.5em;
-    width: 100%;
-}
-
-#game-page .reviewer {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #bebebe;
-}
-
-#game-page .reviewer img {
-    width: 100%;
-    height: 100%;
-}
-
-#game-page .review .info {
-    gap: 0px;
-    padding: 0;
-    margin-left: 6px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-#game-page .review .top {
-    margin: 2px 0 12px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#game-page .review .author {
-    color: #1c439b;
-    font-weight: 700;
-}
-
-#game-page .review .date {
-    color: #787878;
-}
-
-#game-page .review .recommended, #game-page .review .not-recommended, #game-page .review .mixed-feelings {
-    background-color: #f0f0f0;
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
-    color: #26448f;
-    display: inline-block;
-    font-weight: 900;
-    padding: 3px 6px;
-    width: fit-content;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-}
-
-#game-page .review .recommended::before {
-    content: '★';
-    margin-right: 3px;
-    font-size: 14px;
-}
-
-#game-page .review .not-recommended::before {
-    content: '☆';
-    margin-right: 3px;
-    font-size: 14px;
-}
-
-#game-page .review .not-recommended {
-    color: #a12f31;
-}
-
-#game-page .review .mixed-feelings::before {
-    content: '⯪';
-    margin-right: 3px;
-    font-size: 14px;
-}
-
-#game-page .review .mixed-feelings {
-    color: #787878;
-}
-
-#game-page .review .rating {
-    margin-top: 16px;
-    color: #323232;
-}
-
-#game-page .review .rating span {
-    color: #000;
-}
-
-#game-page .review .hide {
-    display: none;
-}
-
-#game-page .review .bottom {
-    margin: 16px 0 10px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-#game-page .review .bottom>* {
-    background-color: transparent;
-    color: #787878;
-    transition-duration: .3s;
-    transition-property: all;
-    transition-timing-function: ease-in-out;
-    font-size: 11px;
-}
-
-#game-page .review .bottom>*:hover {
-    color: #1c439b;
-}
-
-#game-page .review .bottom .show-less::before {
-    content: '▴';
-    margin-right: 3px;
-    font-size: 15px;
-}
-
-#game-page .review .bottom .read-more::before {
-    content: '▾';
-    margin-right: 3px;
-    font-size: 15px;
-}
-
-#game-page .review .bottom a::before {
-    content: '↗';
-    margin-right: 3px;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-#game-page .review .edit {
-    margin-left: auto;
-    margin-right: 8px;
 }
 
 #game-page .details.hide {

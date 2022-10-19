@@ -277,3 +277,66 @@ async function updatePopularity () {
     })
   }
 }
+
+
+exports.onCreateReview = functions.firestore.document('reviews/{id}').onCreate((snapshot, context) => {
+  const data = snapshot.data();
+  const gameRef = firestore.collection('games').doc(data.gameId);
+  const userRef = firestore.collection('users').doc(data.userId);
+
+  return firestore.runTransaction( async (transaction) => {
+    const user = await transaction.get(userRef);
+    const game = await transaction.get(gameRef);
+    const userDoc = user.data();
+      
+    if (!game.exists) {
+      let game = await fetchGameData(data.gameId);
+      transaction.set(gameRef, {
+        name: game.name,
+        id: game.id,
+        score: 0,
+        avgScore: null,
+        members: 0,
+        numberOfScores: 0,
+        platforms: game.platforms,
+        genres: game.genres,
+        releaseDate: game.releaseDate,
+        year: game.year,
+        familyGames: game.familyGames,
+        img: game.img,
+        description: game.description,
+        trailerLink: game.trailerLink,
+        screenshots: game.screenshots,
+        reviewers: [data.userId],
+        reviews: 1,
+      })
+      transaction.update(snapshot.ref, {gameImg: game.img})
+    }
+    else {
+      if (game.data().reviewers.includes(data.userId))
+      transaction.delete(snapshot.ref)
+      else {
+        let newReviewers = game.data().reviewers;
+        newReviewers.push(data.userId); 
+        transaction.update(gameRef, { reviews: game.data().reviews + 1, reviewers: newReviewers });
+        transaction.update(snapshot.ref, {gameImg: game.data().img})
+      }      
+    } 
+    transaction.update(userRef, {reviews: userDoc.reviews + 1})  
+  });
+})
+
+exports.onDeleteReview = functions.firestore.document('reviews/{id}').onDelete((snapshot, context) => {
+  const data = snapshot.data();
+  const gameRef = firestore.collection('games').doc(data.gameId);
+  const userRef = firestore.collection('users').doc(data.userId);
+
+  return firestore.runTransaction( async (transaction) => {
+    const user = await transaction.get(userRef);
+    const game = await transaction.get(gameRef);
+    transaction.update(userRef, {reviews: user.data().reviews - 1});
+    let newReviewers = game.data().reviewers;
+    newReviewers.splice(newReviewers.indexOf(data.userId), 1)
+    transaction.update(gameRef, {reviewers: newReviewers, reviews: game.data().reviews - 1})
+  })
+})

@@ -80,6 +80,19 @@
     margin-bottom: 6px;
 }
 
+#profile .reviews {
+    display: flex;
+    justify-content: space-between;
+    border-top: #f0f0f0 1px solid;
+    padding: 5px 4px;
+    color: #1c439b;
+    font-weight: 700;
+}
+
+#profile .reviews:hover {
+    background-color: #f0f0f0;
+}
+
 #profile .right, #profile .stats-box>div {
     flex: 1;
 }

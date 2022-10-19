@@ -63,7 +63,7 @@ const AllGameReviews = (props) => {
         <div className='reviews-tab' > 
             <h4>Reviews <span>
                 {(user && !game.reviewers.includes(user.id)) ? 
-                    <Link className='new-review' to={`/review/${uniqid()}/editor`}>Write a review</Link> : ''} 
+                    <Link className='new-review' to={`/review/${uniqid()}/editor/${game.id}/${game.name.replace(/\/| /g, '_')}`}>Write a review</Link> : ''} 
                 </span>
             </h4>                       
             {(reviews.length > 0) ?

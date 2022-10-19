@@ -98,10 +98,11 @@ const Profile = (props) => {
                     <div className='lists'>                        
                         {userData.lists.map(list => {
                             return(
-                                <Link key={userData.lists.indexOf(list)} className='list' to={`/list/${list.toLowerCase().replace(/\/| /g, '-')}/${userData.id}/${userData.name.replace(/\/| /g, '-')}`}>{list}</Link>
+                                <Link key={userData.lists.indexOf(list)} className='list' to={`/list/${list.toLowerCase().replace(/\/| /g, '-')}/${userData.id}/${userData.name.replace(/\/| /g, '_')}`}>{list}</Link>
                             )
                         })}
                     </div>
+                    <Link className='reviews' to={`/reviews/${userData.id}/${userData.name.replace(/\/| /g, '_')}`}>Reviews<span>{userData.reviews}</span></Link>
                 </div>
                 <div className='right'>
                     <div className='stats'>
@@ -126,9 +127,3 @@ const Profile = (props) => {
 };
 
 export default Profile;
-
-//left 
-//  profile picture
-//  links to lists
-//right
-//  list stats
