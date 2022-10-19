@@ -30,29 +30,32 @@ const GamesByYear = (props) => {
     }, [year]);
 
     const fetchGames = async (isFirst) => {
-        setGames(null);
         let gamesRef;
         let aux = [];
-        if (isFirst === true)
-        gamesRef = firestore.collection('games').where('year', '==', +year).orderBy('popularity', 'asc').limit(51);
+        if (isFirst === true) {
+            setGames(null);
+            gamesRef = firestore.collection('games').where('year', '==', +year).orderBy('popularity', 'asc').limit(51);
+        }
         else{
-            gamesRef = firestore.collection('games').where('year', '==', +year).orderBy('popularity', 'asc').limit(51).startAfter(lastDoc);
             aux = games;
+            gamesRef = firestore.collection('games').where('year', '==', +year).orderBy('popularity', 'asc').limit(51).startAfter(lastDoc);
+            setGames(null)
         }        
         const docs = await gamesRef.get();
         docs.forEach(doc => {
             aux.push(doc.data());
         })
         if (docs.docs.length === 51)
-        setLastDoc(docs.docs[docs.docs.length-2]);
+            setLastDoc(docs.docs[docs.docs.length-2]);
         else
-        setLastDoc(null);
+            setLastDoc(null);
         setGames(aux);
     }
 
     const loadMore = () => {
         setPage(page + 1);
-        fetchGames(false);
+        if (lastDoc !== null && page + 1 === (games.length - 1) / 20)
+            fetchGames(false);
     }
 
     let emptyBoxes = [1,2,3,4,5,6,7,8,9];

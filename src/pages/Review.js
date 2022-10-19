@@ -240,15 +240,3 @@ const Review = (props) => {
 };
 
 export default Review;
-
-
-//if editor
-//  left 
-//      game title  
-//      review text area
-//      rating  
-//  right
-//      buttons
-//      recommendation
-//else
-//  review component without bottom buttons + game image

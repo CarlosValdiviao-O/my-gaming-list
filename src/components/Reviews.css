@@ -1,0 +1,65 @@
+#reviews {
+    font-size: 11px;
+}
+
+#reviews>h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 9px;
+    text-align: left;
+}
+
+#reviews>.content {
+    margin-top: 15px;
+    padding: 5px 10px 10px;
+}
+
+#reviews .buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+#reviews .buttons:first-of-type {
+    border-bottom: #1c439b 1px solid;
+}
+
+#reviews .buttons:last-of-type {
+    margin-top: 8px;
+}
+
+#reviews .buttons * {
+    font-size: 11px;
+    color: #1c439b;
+    background-color: transparent;
+    line-height: 1.5em;
+}
+
+#reviews .buttons p {
+    font-weight: 700;
+}
+
+#reviews .buttons .off, #reviews .buttons .off button {
+    color: #888;
+    cursor: default;
+}
+
+#reviews .buttons button:not(:disabled):hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#reviews .review .game-img {
+    display: flex;
+}
+
