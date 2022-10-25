@@ -1,4 +1,4 @@
-import { useEffect,  useState, useContext } from 'react';
+import { useEffect,  useState, useContext, useRef } from 'react';
 import { UserContext } from './UserContext';
 import ReviewComponent from './ReviewComponent';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,8 @@ const AllGameReviews = (props) => {
     const [ userReview, setUserReview ] = useState(null);
     
     const user = useContext(UserContext);
+
+    const scroll = useRef();
 
     useEffect(() => {
         const fetchUserReview = async () => {
@@ -35,6 +37,12 @@ const AllGameReviews = (props) => {
     useEffect(() => {
         fetchReviews(true);
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            scroll.current.scrollIntoView({behavior: 'smooth'})
+        }, 2000)
+    }, [reviews, page])
 
     const fetchReviews = async (isFirst) => {
         let aux = [];
@@ -65,7 +73,8 @@ const AllGameReviews = (props) => {
                 {(user && !game.reviewers.includes(user.id)) ? 
                     <Link className='new-review' to={`/review/${uniqid()}/editor/${game.id}/${game.name.replace(/\/| /g, '_')}`}>Write a review</Link> : ''} 
                 </span>
-            </h4>                       
+            </h4>   
+            <div ref={scroll}></div>                    
             {(reviews.length > 0) ?
                 <div className='reviews'>
                     {reviews.map(review => {

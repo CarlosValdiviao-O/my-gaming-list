@@ -404,11 +404,16 @@ h1 {
 }
 
 #results-footer div {
-    background-color: var(--navHover);
-    color: var(--button);
+    background-color: var(--blue);
+    color: #f0f0f0;
     padding: 8px;
     display: flex;
     gap: 3px;
+}
+
+#results-footer div:hover, #results-footer div:first-child {
+    background-color: var(--navHover);
+    color: var(--button);
 }
 
 #results-footer a {

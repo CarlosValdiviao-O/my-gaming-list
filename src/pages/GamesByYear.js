@@ -18,8 +18,10 @@ const GamesByYear = (props) => {
     const [ lastDoc,  setLastDoc ] = useState(null);
     const [ page, setPage ] = useState(0);
 
+    const scroll = useRef();
+
     useEffect(() => {
-        if (+jumpToVal < today.getFullYear() + 2 && +jumpToVal > 1975)
+        if (+jumpToVal < today.getFullYear() + 2 && +jumpToVal > 1969)
         setJumpToLink('Go');
         else
         setJumpToLink('');
@@ -28,6 +30,12 @@ const GamesByYear = (props) => {
     useEffect(() => {
         fetchGames(true);
     }, [year]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            scroll.current.scrollIntoView({behavior: 'smooth'})
+        }, 2000)
+    }, [games, page])
 
     const fetchGames = async (isFirst) => {
         let gamesRef;
@@ -89,6 +97,7 @@ const GamesByYear = (props) => {
                     <p><Link className={(jumpToLink === '') ? 'hide' : ''} to={`/games-by-year/${jumpToVal}`}>{jumpToLink}</Link>Go</p>
                 </div>
             </div>
+            <div ref={scroll}></div>
             <div className='games'>
                 {(games !== null) ? 
                 games.map(game => {

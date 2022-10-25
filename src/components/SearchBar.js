@@ -19,7 +19,8 @@ const SearchBar = (props) => {
     const link = 'https://api.rawg.io/api/games?page_size=8&search=';
     const firestore = firebase.firestore();
     const options = [
-        {name: 'All Games', val: 'all' },
+        {name: 'All', val: 'all' },
+        {name: 'Games Only', val: 'games' },
         {name: 'PlayStation', val: '&platforms=187,18,16,15,27,17'},
         {name: 'Nintendo', val: '&platforms=7,8,9,13,83,10,11,105'},
         {name: 'Microsoft', val: '&platforms=1,186,14,80'},
@@ -47,8 +48,8 @@ const SearchBar = (props) => {
             filterGamesData(JSON.parse(fetchedItems.data));
         }
         else {
-            let usersRef = await firestore.collection('users').orderBy('keyword').limit(8).startAt(searchVal)
-            .endAt(searchVal + '\uf8ff').get();
+            let usersRef = await firestore.collection('users').orderBy('keyword').limit(8).startAt(searchVal.toLowerCase())
+            .endAt(searchVal.toLowerCase() + '\uf8ff').get();
             let aux = [];
             usersRef.docs.forEach((doc) => {
                 aux.push(doc.data());
@@ -149,7 +150,7 @@ const SearchBar = (props) => {
                         (searchResults !== '') ? 
                         <div id='footer-message'>
                             {(!searchResults[0]) ? <p>{`No results found for: `}<span>{lastSearch}</span></p>
-                            : <Link to={`/search/${pickedOp}/${lastSearch}`}>
+                            : <Link onClick={() => setDispRes(false)} to={`/search/${pickedOp}/${lastSearch}`}>
                                 <p>{`See more results for: `}<span>{lastSearch}</span></p>
                               </Link>}
                         </div>

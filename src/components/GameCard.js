@@ -3,6 +3,8 @@ import { useState, useContext } from 'react';
 import { UserContext } from './UserContext';
 import AddGameButton from './AddGameButton';
 import Icon from './../icons/user.svg';
+import './GameCard.css';
+import Image from './../icons/no-image.png';
 
 const GameCard = (props) => {
     const { game, firestore } = props;
@@ -10,8 +12,7 @@ const GameCard = (props) => {
 
     const user = useContext(UserContext);
     let date = (game.releaseDate !== 'TBA') ? new Date(game.releaseDate).toDateString() : 'TBA';
-    
-    let score = (game.visibleScore !== undefined && game.visibleScore !== null) ? game.visibleScore.toFixed(2) : '~';
+    let score = (game.visibleScore >= 0 && game.visibleScore <= 10 && game.visibleScore !== null) ? game.visibleScore.toFixed(2) : (game.visibleScore === '?') ? '?' : '~';
     let members = (game.visibleMembers !== undefined) ? game.visibleMembers : '~';
     return(
         <div className='game-card'>
@@ -28,7 +29,7 @@ const GameCard = (props) => {
             </div>
             <div className='content'>
                 <Link to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`} className='image'>
-                    <img src={game.img} alt={game.name}></img>
+                    <img src={(game.img !== null) ? game.img : Image} alt={game.name}></img>
                 </Link>
                 <div className='info'>
                     <div className={(isLong === true) ? 'long' : 'short'} dangerouslySetInnerHTML={{__html: game.description}}></div>

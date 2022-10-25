@@ -3,14 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 import Slider from 'infinite-react-carousel';
 import Spinner from '../icons/spinner.gif';
 import './GamesCarousel.css';
+import Image from './../icons/no-image.png';
 
 const GamesCarousel = (props) => {
-    const { games, header } = props;
+    const { games, header, slides } = props;
     const [ items, setItems ] = useState(null);
     const [ settings, setSettings ] = useState({
-        arrowsScroll: 4,
+        arrowsScroll: slides,
         className: 'carousel',
-        slidesToShow: 4,
+        slidesToShow: slides,
         arrows: true, 
     })
 
@@ -61,7 +62,7 @@ const GamesCarousel = (props) => {
     const divRef = useRef();
 
     let emptyBoxes = [];
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i < 8; i++){
         emptyBoxes[i] = {
             name: 'Fetching games..',
             pic: Spinner,
@@ -77,7 +78,7 @@ const GamesCarousel = (props) => {
                 {items.map(item => {
                         return(
                             <Link key={items.indexOf(item)} className='game' to={item.link}>
-                                <img src={item.pic} alt={item.name}></img>
+                                <img src={(item.pic !== null) ? item.pic : Image} alt={item.name}></img>
                                 <p>{item.name}</p>
                             </Link>
                         )

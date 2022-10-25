@@ -1,0 +1,330 @@
+#search h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px;
+    text-align: left;
+}
+
+#search>div {
+    margin: 8px;
+    font-size: 11px;
+    margin-top: 16px;
+}
+
+#search .letters-links {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #1c439b;
+}
+
+#search .letters-links a {
+    color: #1c439b;
+    font-size: 13px;
+    padding: 1px 3px;
+}
+
+#search .letters-links a:hover {
+    background-color: #1c439b;
+    color: #f0f0f0;
+}
+
+#search .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+#search .search-box {
+    display: flex;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search .search-box input {
+    border: #c3c3c3 1px solid;
+    border-radius: 8px 0 0 8px;
+    border-right: #c3c3c3 0 solid;
+    color: #323232;
+    float: left;
+    font-size: 14px;
+    height: 50px;
+    text-indent: 10px;
+    width: 715px;
+}
+
+#search .search-box a {
+    background-color: #f8f8f8;
+    border: #c3c3c3 1px solid;
+    border-radius: 0 8px 8px 0;
+    color: #2e51a2;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search .search-box a img {
+    height: 50%;
+}
+
+#search h3 {
+    margin-top: 16px;
+    border-bottom: 1px solid #bebebe;
+    padding-bottom: 2px;
+    font-weight: 700;
+}
+
+#search .carousel {
+    padding-top: 2px;
+}
+
+#search .carousel .game {
+    width: 124px !important;
+    height: 170px;
+}
+
+#search .family-games .carousel .carousel-track {
+    height: 124px !important;
+}
+
+#search .links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 24px;
+}
+
+#search .links a {
+    padding: 12px 0;
+    color: #1c439b;
+    font-size: 12px;
+    transition: all ease-in-out .2s;
+}
+
+#search .links a:not(.last) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#search .links a:hover {
+    background-color: #e1e7f5;
+}
+
+#search .links a::before {
+    content: '>';
+    margin: 0 6px;
+    font-size: 14px;
+    color: #c3c3c3;
+}
+#search .genre {
+    margin-bottom: 20px;
+}
+
+#search .genre h4 {
+    font-size: 12px;
+    margin-top: 16px;
+    border-bottom: 1px solid #bebebe;
+    padding-bottom: 8px; 
+    font-weight: 700;
+}
+
+#search .genre p {
+    margin-top: 8px;
+    background-color: #f8f8f8;
+    line-height: 1.5rem;
+    padding: 8px;
+}
+
+#search .games-results .games {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+#search .games .game-card {
+    height: 372px;
+    width: 254px;
+} 
+
+#search .games .game-card .header h4 {
+    height: 50px;
+    font-size: 13px;
+}
+
+#search .games .game-card .date {
+    height: 19px;
+}
+
+#search .games .game-card .genres {
+    gap: 3px;
+    height: 40px;
+    flex-wrap: wrap;
+}
+
+#search .games .game-card .image {
+    width: 100%;
+}
+
+#search .games .game-card .info {
+    display: none;
+}
+
+#search .games-results .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+#search .games-results .buttons button:disabled {
+    cursor: default;
+}
+
+#search .games-results>.buttons button {
+    padding: 3px 4px;
+    background-color: #d8dbe0;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#search .games-results>.buttons button:hover, #search .games-results>.buttons .current {
+    background-color: #2e51a2;
+}
+
+#search .games-results>.buttons p {
+    color: #d8dbe0;
+    font-size: 14px;
+}
+
+#search .search-results {
+    background-color: #4f74c8;
+    color: #f0f0f0;
+    text-align: center;
+    font-size: 12px;
+    padding: 2px 0;
+    margin: 0 8px;
+}
+
+#search .games-results>h4, #search .users-results>h4 {
+    font-size: 13px;
+    margin: 8px 8px;
+    line-height: 1.5rem;
+    border-bottom: 1px solid #bebebe;
+}
+
+#search .link-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search .link-container .link-to-search {
+    background-color: #4f74c8;
+    color: #fff;
+    padding: 4px;
+    min-width: 220px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 16px;
+    transition: .3s ease-in-out all;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search .link-container .link-to-search img {
+    height: 14px;
+    width: 14px;
+}
+
+#search .link-container .link-to-search:hover {
+    background-color: #7693d4;
+}
+
+#search .no-results {
+    margin-left: 8px;
+}
+
+#search .users-results .users {
+    margin: 8px;
+}
+
+#search .users .user {
+    display: flex;
+    gap: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #bebebe;
+}
+
+#search .user .image {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #bebebe;
+    display: flex;
+}
+
+#search .user .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#search .user .name {
+    margin-bottom: 10px;
+    color: #1c439b;
+    font-weight: 700;
+}
+
+#search .user .name:hover {
+    text-decoration: underline;
+}
+
+#search .users-results .buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+#search .users-results .buttons:first-of-type {
+    border-bottom: #1c439b 1px solid;
+}
+
+#search .users-results .buttons:last-of-type {
+    margin-top: 8px;
+}
+
+#search .users-results .buttons * {
+    font-size: 11px;
+    color: #1c439b;
+    background-color: transparent;
+    line-height: 1.5em;
+}
+
+#search .users-results .buttons p {
+    font-weight: 700;
+}
+
+#search .users-results .buttons .off, #search .users-results .buttons .off button {
+    color: #888;
+    cursor: default;
+}
+
+#search .users-results .buttons button:not(:disabled):hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

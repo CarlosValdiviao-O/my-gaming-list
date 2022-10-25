@@ -33,6 +33,10 @@
     width: 100%;
 }
 
+#profile #columns>.right>*{
+    margin: 0 10px 20px;
+}
+
 #profile .image {
     height: 225px;
     overflow: hidden;

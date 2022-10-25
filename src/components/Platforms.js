@@ -8,7 +8,7 @@ const Platforms = () => {
             links: [
                 {name: 'Top Games', linkTo: '/top-games/all-time'},
                 {name: 'Games by Year', linkTo: '/games-by-year/' + today.getFullYear()},
-                {name: 'Search Games', linkTo: '/search/all/all'},
+                {name: 'Search Games', linkTo: '/search'},
                 {name: 'Games Reviews', linkTo: '/reviews'},
             ]
         },
@@ -19,17 +19,17 @@ const Platforms = () => {
                 {name: 'Top PS4 Games', linkTo: '/top-games/playstation-4'},
                 {name: 'Top PS3 Games', linkTo: '/top-games/playstation-3'},
                 {name: 'Top PS2 Games', linkTo: '/top-games/playstation-2'},
-                {name: 'Top PS1 Games', linkTo: '/top-games/playstation-1'},
+                {name: 'Top PS1 Games', linkTo: '/top-games/playstation'},
             ]
         },
         {
             name: 'Nintendo',
             links: [
                 {name: 'Top Switch Games', linkTo: '/top-games/nintendo-switch'},
-                {name: 'Top Wii U Games', linkTo: '/top-games/nintendo-wii-u'},
+                {name: 'Top Wii U Games', linkTo: '/top-games/wii-u'},
                 {name: 'Top 3DS Games', linkTo: '/top-games/nintendo-3ds'},
-                {name: 'Top Wii Games', linkTo: '/top-games/nintendo-wii'},
-                {name: 'Top Gamecube Games', linkTo: '/top-games/nintendo-gamecube'},
+                {name: 'Top Wii Games', linkTo: '/top-games/wii'},
+                {name: 'Top Gamecube Games', linkTo: '/top-games/gamecube'},
                 {name: 'Top DS Games', linkTo: '/top-games/nintendo-ds'},
             ]
         },

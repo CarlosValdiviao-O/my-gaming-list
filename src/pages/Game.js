@@ -8,6 +8,7 @@ import GameReviews from '../components/GameReviews';
 import AllGameReviews from '../components/AllGameReviews';
 import GamesCarousel from '../components/GamesCarousel';
 import Spinner from '../icons/spinner.gif';
+import Image from './../icons/no-image.png';
 
 const Game = (props) => {
     const { firebase, tab } = props;
@@ -138,7 +139,7 @@ const Game = (props) => {
                 <div id='columns'>
                     <div className='left'>
                         <div className='image'>
-                            <img src={game.img} alt={game.name}></img>
+                            <img src={(game.img !== null) ? game.img : Image} alt={game.name}></img>
                         </div>
                         {(user) ? 
                         (user.games.includes(id)) ?
@@ -235,7 +236,7 @@ const Game = (props) => {
                             </div>
                             {(game.familyGames.length > 0) ?
                                 <div className='family-games'>
-                                    <GamesCarousel games={game.familyGames} header={'Related Games'} />
+                                    <GamesCarousel games={game.familyGames} header={'Related Games'} slides={4}/>
                                 </div>
                             : ' '}
                         </div>

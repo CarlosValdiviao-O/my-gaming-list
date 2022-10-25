@@ -19,6 +19,7 @@ import Reviews from "./pages/Reviews";
 import Review from './pages/Review';
 import Footer from "./components/Footer";
 import Game from "./pages/Game";
+import GameCreator from "./pages/GameCreator";
 
 firebase.initializeApp({
   apiKey: "AIzaSyBVpUTLE7RMltSmdPsgD8gh5Gfmdi1xSpc",
@@ -105,9 +106,11 @@ function App() {
             <Route path="/list/:list/:id/:name" element={<UserList/>}/> 
             <Route path="/top-games/:platform" element={<TopGames/>}/>  
             <Route path="/games-by-year/:year" element={<GamesByYear firestore={firestore}/>}/> 
-            <Route path="/search/:platform/:text" element={<Search/>}/>
+            <Route path="/search" element={<Search firebase={firebase}/>}/>
+            <Route path="/search/:platform/:text" element={<Search firebase={firebase}/>}/>
             <Route path="/game/:id/:name" element={<Game firebase={firebase} tab='details'/>} />
-            <Route path="/game/:id/:name/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>   
+            <Route path="/game/:id/:name/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>  
+            <Route path="/game_creator" element={<GameCreator firebase={firebase} />} /> 
           </Routes>
         </div>
         <Footer/>

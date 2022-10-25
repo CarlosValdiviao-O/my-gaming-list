@@ -38,9 +38,11 @@ const Home = (props) => {
 
     useEffect(() => {
         const aux = async () => {
-            let recent = await fetchGames(link + dates);
+            let random = Math.floor(Math.random() * 5);
+            let recent = await fetchGames(link + dates + `&page=${random + 1}`);
             setRecentGames(recent);
-            let recommended = await fetchGames(link + 'metacritic=90,100');
+            random = Math.floor(Math.random() * 10);
+            let recommended = await fetchGames(link + `ordering=-metacritic&page=${random + 1}`);
             setRecommendedGames(recommended);
             let reviewsRef = await firestore.collection('reviews').orderBy('createdAt', 'desc').limit(4).get();
             let aux = [];
@@ -89,8 +91,8 @@ const Home = (props) => {
             <h1 id='greet'>Welcome to My Gaming List!</h1>
             <div id='columns'>
                 <div className='left'>
-                    <GamesCarousel games={recentGames} header={'Recent Games'} />
-                    <GamesCarousel games={recommendedGames} header={'Recomended Games'} />
+                    <GamesCarousel games={recentGames} header={'Recent Games'} slides={4}/>
+                    <GamesCarousel games={recommendedGames} header={'Recomended Games'} slides={4}/>
                     <ReviewsComponent reviews={reviews} header={'Latest Games Reviews'}
                         firestore={firestore}/>
                     {user ? <LastUserUpdates games={userGames} firestore={firestore} />: ''}

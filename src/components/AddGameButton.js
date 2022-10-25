@@ -123,6 +123,7 @@ const AddGameButton = (props) => {
     }    
 
     const toggleModalOn = async () => {
+        console.log(data);
         setTopCoord(window.scrollY + 80);
         setResultMessage('Wait please...');
         setShowResult(false);

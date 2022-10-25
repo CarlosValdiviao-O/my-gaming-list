@@ -1,0 +1,195 @@
+.game-card {
+    border: #f0f0f0 1px solid;
+    display: block;
+    font-family: Avenir,lucida grande,tahoma,verdana,arial,sans-serif;
+    height: 372px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    width: 336px;
+    font-size: 11px;
+}
+
+.game-card .header {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card h4 {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #1c439b;
+    text-align: center;
+}
+
+.game-card h4 a:hover {
+    text-decoration: underline;
+}
+
+.game-card .date {
+    justify-content: center;
+    height: 22px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+.game-card .genres {
+    background-color: #f0f0f0;
+    height: 27px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.game-card .genres p {
+    color: #787878;
+    background-color: #fff;
+    border: #e1e7f5 1px solid;
+    border-radius: 5px;
+    font-size: 9px;
+    padding: 1px 4px;
+}
+
+.game-card .content {
+    display: flex;
+    height: 236px;
+}
+
+.game-card .image {
+    height: 236px;
+    width: 167px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.game-card .image img {
+    height: 100%;
+}
+
+.game-card .image .spinner {
+    height: 50%;
+}
+
+.game-card .info {
+    width: 167px;
+    line-height: 1.4em;
+    overflow: hidden;
+    padding: 6px 4px 0 8px;
+}
+
+.game-card .info br {
+    display: block;
+    content: ""; 
+    margin-top: 1.4rem; 
+}
+
+.game-card .info h3 {
+    margin: 1.4rem 0 0.4rem;
+}
+
+.game-card .info:hover {
+    overflow-y: scroll;
+}
+
+.game-card .info .short {
+    max-height: 180px;
+    overflow: hidden;
+}
+
+.game-card .info button {
+    font-weight: 900;
+    background-color: transparent;
+    margin-left: 48%;
+}
+
+.game-card .info>p {
+    margin: 4px 0 6px;
+    background-color: #f8f8f8;
+    padding: 2px;
+}
+
+.game-card .info>p span {
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+.game-card .info>p a {
+    color: #1c439b;
+    margin-right: 3px;
+}
+
+.game-card .info>p a:hover {
+    text-decoration: underline;
+}
+
+.game-card .info>p a:not(:last-child):after {
+    content: ',';
+}
+
+.game-card .bottom {
+    display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
+    height: 27px;
+}
+
+.game-card .bottom>p {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #545454;
+}
+
+.game-card .bottom .members img {
+    height: 60%;
+    margin-right: 3px;
+}
+
+.game-card .bottom>p span {
+    font-size: 14px;
+    margin-right: 3px;
+}
+
+.game-card .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.game-card .buttons>button {
+    background-color: #4f74c8;
+    color: #4f74c8;
+    width: 96px;
+    border-radius: 3px;
+    height: 19px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+.game-card .buttons>button:hover {
+    opacity: .7;
+}
+
+.game-card .buttons>button::after {
+    content: 'Add to List';
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.game-card .buttons .edit::after {
+    content: 'Edit Game';
+}

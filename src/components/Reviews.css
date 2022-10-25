@@ -59,6 +59,32 @@
     cursor: pointer;
 }
 
+#reviews .header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 3px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+#reviews .header a {
+    color: #1c439b;
+    font-weight: 700;
+}
+
+#reviews .header a:hover {
+    text-decoration: underline;
+}
+
+#reviews .header p a, #reviews .header p {
+    font-size: 9px;
+    font-weight: 400;
+}
+
+#reviews .review {
+    margin-top: 0;
+}
+
 #reviews .review .game-img {
     display: flex;
 }

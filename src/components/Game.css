@@ -361,6 +361,10 @@
     line-height: 1.5em;
 }
 
+#game-page .description h3 {
+    margin: 1.5rem 0 0.5rem;
+}
+
 #game-page .description br {
     display: block;
     content: ""; 

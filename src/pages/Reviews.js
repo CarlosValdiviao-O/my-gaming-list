@@ -1,16 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReviewComponent from '../components/ReviewComponent';
-import '../components/Reviews.css'
+import '../components/Reviews.css';
+import { UserContext } from './../components/UserContext';
+import AddGameButton from '../components/AddGameButton';
 
 const Reviews = (props) => {
+    const user = useContext(UserContext);
     const { firestore } = props;
     const [ reviews, setReviews ] = useState(null);
     const [ lastDoc,  setLastDoc ] = useState(null);
     const [ page, setPage ] = useState(0);
+
+    const scroll = useRef();
     
     useEffect(() => {
        fetchReviews(true) 
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            scroll.current.scrollIntoView({behavior: 'smooth'})
+        }, 2000)
+    }, [reviews, page])
 
     const fetchReviews = async (isFirst) => {
         let reviewsRef;
@@ -47,6 +59,7 @@ const Reviews = (props) => {
         <div id='reviews'>
             <h1>Recent Reviews</h1>
             <div className='content'>
+                <div ref={scroll}></div>
                 <div className='buttons'>
                     <p className={(page !== 0) ? 'on' : 'off'}>{'< '}<button disabled={(page !== 0) ? false : true} onClick={() => setPage(page-1)}>Prev</button></p>
                     <p className={(lastDoc !== null) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={loadMore}>Next</button>{' >'}</p>
@@ -56,7 +69,14 @@ const Reviews = (props) => {
                         let index = reviews.indexOf(review);
                         if (index >= page * 20 && index < (page + 1) * 20)
                         return(
-                            <ReviewComponent review={review} />
+                            <div>
+                                <div className='header'>
+                                    <Link to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`}>{review.gameName}</Link>
+                                    { user ? <AddGameButton gameData={review} firestore={firestore} type={'review'} /> : ''}
+                                    <p>(<Link to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}/reviews`}>All Reviews</Link>)</p>
+                                </div>
+                                <ReviewComponent review={review} />
+                            </div>
                         )
                     })}                
                 </div>
@@ -71,7 +91,11 @@ const Reviews = (props) => {
     else
 
     return (
-        <p>Please wait...</p>
+        <div id='reviews'>
+            <div className='content'>
+                <p>Please wait...</p>
+            </div>
+        </div>
     )
 };
 
