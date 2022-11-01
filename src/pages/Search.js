@@ -148,8 +148,10 @@ const Search = (props) => {
                 item.page = pageNum;
                 aux.push(item);
             })
-            if (usersRef.docs.length === 21)
+            if (usersRef.docs.length === 21) {
+                aux.pop();
                 setLastDoc(usersRef.docs[usersRef.docs.length-2]);
+            }
             else
                 setLastDoc(null);
             setUsers(aux);
@@ -305,7 +307,7 @@ const Search = (props) => {
                 {(platform === 'user') ? 
                 <div className='buttons'>
                     <p className={(page !== 0) ? 'on' : 'off'}>{'< '}<button disabled={(page !== 0) ? false : true} onClick={() => setPage(page-1)}>Prev</button></p>
-                    <p className={(lastDoc !== null) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={() => changePage(page + 1)}>Next</button>{' >'}</p>
+                    <p className={(lastDoc !== null || page + 1 < users.length / 20) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={() => changePage(page + 1)}>Next</button>{' >'}</p>
                 </div>
                 :
                 '' }

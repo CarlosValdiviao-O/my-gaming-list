@@ -196,7 +196,7 @@ const Game = (props) => {
                                                 <p>{year}</p>}
                                                 <div className='platforms'>
                                                     {(game.platforms.map(platform => {
-                                                        let link = platform.toLowerCase().replace(/\/| /g, '-');                                            
+                                                        let link = platform.replace(/\/| /g, '-');                                            
                                                         return(
                                                             <Link key={game.platforms.indexOf(platform)} to={`/top-games/${link}`}>{platform}</Link>
                                                         )

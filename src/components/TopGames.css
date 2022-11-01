@@ -1,0 +1,279 @@
+#top-games h1 {
+    background-color: #e1e7f5;
+    border-bottom-color: #1c439b;
+    border-left-color: #e5e5e5;
+    border-right-color: #e5e5e5;
+    border-style: solid;
+    border-top-color: #e5e5e5;
+    border-width: 1px;
+    color: #000;
+    font-family: Verdana,Arial;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 9px;
+    text-align: left;
+}
+
+#top-games>div {
+    margin: 5px 10px 10px;
+    font-size: 11px;
+}
+
+#top-games .lists-nav {
+    display: flex;
+    margin: 16px 10px 0px;
+    border-bottom: #1c439b 1px solid;
+    font-weight: 300;
+    gap: 2px;
+}
+
+#top-games .lists-nav * {
+    padding: 4px 8px;
+    transition: all .3s ease-in-out;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+#top-games .lists-nav .current, #top-games .lists-nav *:hover {
+    background-color: #1c439b;
+    color: white;
+}
+
+#top-games .platforms {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 0 5px;
+    height: fit-content;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
+}
+
+#top-games .platforms.hide {
+    height: 0px;
+}
+
+#top-games .platforms a {
+    padding: 12px 0;
+    color: #1c439b;
+    font-size: 12px;
+    transition: all ease-in-out .2s;
+}
+
+#top-games .platforms a:not(.last) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#top-games .platforms a:hover {
+    background-color: #e1e7f5;
+}
+
+#top-games .platforms a::before {
+    content: '>';
+    margin: 0 6px;
+    font-size: 14px;
+    color: #c3c3c3;
+}
+
+#top-games .results-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#top-games .results-header h3 {
+    font-size: 16px;
+}
+
+#top-games .buttons {
+    display: flex;
+    gap: 5px;
+    padding: 0 4px;
+}
+
+#top-games .buttons button {
+    background-color: #4f74c8;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.0em;
+    padding: 4px 8px;
+    transition: all ease-in-out .3s;
+}
+
+#top-games .buttons button:hover {
+    background-color: #7693d4;
+}
+
+#top-games .columns {
+    display: flex;
+    height: 26px;
+    margin-bottom: 0;
+}
+
+#top-games .columns * {
+    background-color: #4f74c8;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+#top-games .columns *:not(.status) {
+    border-right: 1px solid #fff;
+}
+
+#top-games .columns .rank, #top-games .game h4 {
+    width: 74px;
+}
+
+#top-games .columns .title {
+    flex: 1;
+}
+
+#top-games .columns .score {
+    width: 96px;
+}
+
+#top-games .columns .status {
+    width: 114px;
+}
+
+#top-games .games {
+    margin-top: 0;
+}
+
+#top-games .games .game {
+    display: flex;
+    height: 94px;
+    border-left: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+#top-games .games .game:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+#top-games .game>* {
+    border-right: 1px solid #e5e5e5;
+}
+
+#top-games .game h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: #888;
+}
+
+#top-games .game .info {
+    display: flex;
+    flex: 1;
+    padding: 12px;
+    gap: 8px;
+    color: #999;
+    word-break: break-word;
+    word-wrap: break-word;
+    line-height: 1.5em;
+}
+
+#top-games .game .image {
+    border: 0;
+}
+
+#top-games .info a {
+    font-size: 14px;
+    color: #1c439b;
+    font-weight: 700;
+}
+
+#top-games .info a:hover {
+    text-decoration: underline;
+}
+
+#top-games .info p:first-of-type {
+    margin-top: 4px;
+}
+
+#top-games .game h5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#top-games .game h5 span {
+    margin-right: 4px;
+    color: #ffea00;
+    text-shadow: 0 0 2px #c40;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+#top-games .game .no-score {
+    color: #c3c3c3;
+}
+
+#top-games .game .no-score span {
+    color: #eee;
+    text-shadow: 0 0 2px #666;
+}
+
+#top-games .game>div:last-child {
+    display: flex;
+    width: 114px;
+    justify-content: center;
+    align-items: center;
+}
+
+#top-games .button-modal {
+    background-color: #4f74c8;
+    color: #4f74c8;
+    width: 90px;
+    border-radius: 4px;
+    padding: 4px 0;
+    height: 26px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+#top-games .button-modal:hover {
+    opacity: .7;
+}
+
+#top-games .button-modal::after {
+    content: 'Add to List';
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+#top-games .button-modal.edit {
+    background-color: #fff;
+    color: #fff;
+    border: #26448f 1px solid;
+}
+
+#top-games .button-modal.edit:hover {
+    background-color: rgba(38,68,143,.1);
+}
+
+#top-games .button-modal.edit::after {
+    content: 'Edit Game';
+    color: #26448f;
+}
+
+#top-games>.buttons {
+    justify-content: center;
+}
+
+#top-games .games>p {
+    padding: 12px;
+}

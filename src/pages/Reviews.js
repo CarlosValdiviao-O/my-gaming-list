@@ -40,8 +40,10 @@ const Reviews = (props) => {
         docs.forEach(doc => {
             aux.push(doc.data());
         })
-        if (docs.docs.length === 21)
+        if (docs.docs.length === 21) {
+            aux.pop();
             setLastDoc(docs.docs[docs.docs.length-2]);
+        }
         else
             setLastDoc(null);
         setReviews(aux);
@@ -49,7 +51,7 @@ const Reviews = (props) => {
 
     const loadMore = () => {
         setPage(page + 1);
-        if (lastDoc !== null && page + 1 === (reviews.length - 1) / 20)
+        if (lastDoc !== null && page + 1 === (reviews.length) / 20)
             fetchReviews(false);
     }
 
@@ -62,7 +64,7 @@ const Reviews = (props) => {
                 <div ref={scroll}></div>
                 <div className='buttons'>
                     <p className={(page !== 0) ? 'on' : 'off'}>{'< '}<button disabled={(page !== 0) ? false : true} onClick={() => setPage(page-1)}>Prev</button></p>
-                    <p className={(lastDoc !== null) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={loadMore}>Next</button>{' >'}</p>
+                    <p className={(lastDoc !== null || page + 1 < (reviews.length) / 20) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={loadMore}>Next</button>{' >'}</p>
                 </div> 
                 <div className='reviews'>                
                     {reviews.map(review => {
@@ -82,7 +84,7 @@ const Reviews = (props) => {
                 </div>
                 <div className='buttons'>
                     <p className={(page !== 0) ? 'on' : 'off'}>{'< '}<button disabled={(page !== 0) ? false : true} onClick={() => setPage(page-1)}>Prev</button></p>
-                    <p className={(lastDoc !== null) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={loadMore}>Next</button>{' >'}</p>
+                    <p className={(lastDoc !== null || page + 1 < (reviews.length) / 20) ? 'on' : 'off'}><button disabled={(lastDoc !== null) ? false : true} onClick={loadMore}>Next</button>{' >'}</p>
                 </div> 
             </div> 
         </div>

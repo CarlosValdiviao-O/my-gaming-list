@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from './../components/UserContext';
 import './../components/GamesByYear.css';
 import GameCard from '../components/GameCard';
-import Spinner from '../icons/spinner.gif'
+import Spinner from '../icons/spinner.gif';
 import BottomNote from '../components/BottomNote';
 
 const GamesByYear = (props) => {
@@ -53,8 +53,10 @@ const GamesByYear = (props) => {
         docs.forEach(doc => {
             aux.push(doc.data());
         })
-        if (docs.docs.length === 51)
+        if (docs.docs.length === 51) {
+            aux.pop();
             setLastDoc(docs.docs[docs.docs.length-2]);
+        }
         else
             setLastDoc(null);
         setGames(aux);
@@ -62,7 +64,7 @@ const GamesByYear = (props) => {
 
     const loadMore = () => {
         setPage(page + 1);
-        if (lastDoc !== null && page + 1 === (games.length - 1) / 20)
+        if (lastDoc !== null && page + 1 === (games.length) / 50)
             fetchGames(false);
     }
 
@@ -129,8 +131,8 @@ const GamesByYear = (props) => {
             {(games !== null) ?
                 <div className='buttons'>
                     {(page !== 0) ? <button onClick={() => setPage(page-1)}>Previous</button> : ''}
-                    {(page !== 0 && lastDoc !== null) ? <p>-</p> : ''}
-                    {(lastDoc !== null) ? <button onClick={loadMore}>More Games</button> : ''}
+                    {(page !== 0 && (lastDoc !== null || page + 1 < (games.length) / 50)) ? <p>-</p> : ''}
+                    {(lastDoc !== null || page + 1 < (games.length) / 50) ? <button onClick={loadMore}>More Games</button> : ''}
                 </div>
             : ''}
             <BottomNote />

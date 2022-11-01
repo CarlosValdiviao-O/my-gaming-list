@@ -35,7 +35,7 @@ const GameCard = (props) => {
                     <div className={(isLong === true) ? 'long' : 'short'} dangerouslySetInnerHTML={{__html: game.description}}></div>
                     <button onClick={() => setIsLong(!isLong)}>{(isLong === true) ? '▴' : '▾'}</button>
                     <p><span>Platforms: </span>{game.platforms.map(platform => {
-                        let trimmed = platform.toLowerCase().replace(/ /g, '-').replace('/', '-');
+                        let trimmed = platform.replace(/\/| /g, '-');
                         return ( 
                             <Link key={game.platforms.indexOf(platform)} to={`/top-games/${trimmed}`}>{platform}</Link>
                         )

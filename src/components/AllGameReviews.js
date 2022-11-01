@@ -63,7 +63,8 @@ const AllGameReviews = (props) => {
 
     const loadMore = () => {
         setPage(page + 1);
-        fetchReviews(false);
+        if (game.reviews > reviews.length)
+            fetchReviews(false);
     }
 
     if (reviews !== null)

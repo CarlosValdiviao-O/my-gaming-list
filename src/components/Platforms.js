@@ -6,7 +6,7 @@ const Platforms = () => {
         {
             name: 'Games',
             links: [
-                {name: 'Top Games', linkTo: '/top-games/all-time'},
+                {name: 'Top Games', linkTo: '/top-games/All-Time'},
                 {name: 'Games by Year', linkTo: '/games-by-year/' + today.getFullYear()},
                 {name: 'Search Games', linkTo: '/search'},
                 {name: 'Games Reviews', linkTo: '/reviews'},
@@ -15,37 +15,37 @@ const Platforms = () => {
         {
             name: 'PlayStation',
             links: [
-                {name: 'Top PS5 Games', linkTo: '/top-games/playstation-5'},
-                {name: 'Top PS4 Games', linkTo: '/top-games/playstation-4'},
-                {name: 'Top PS3 Games', linkTo: '/top-games/playstation-3'},
-                {name: 'Top PS2 Games', linkTo: '/top-games/playstation-2'},
-                {name: 'Top PS1 Games', linkTo: '/top-games/playstation'},
+                {name: 'Top PS5 Games', linkTo: '/top-games/PlayStation-5'},
+                {name: 'Top PS4 Games', linkTo: '/top-games/PlayStation-4'},
+                {name: 'Top PS3 Games', linkTo: '/top-games/PlayStation-3'},
+                {name: 'Top PS2 Games', linkTo: '/top-games/PlayStation-2'},
+                {name: 'Top PS1 Games', linkTo: '/top-games/PlayStation'},
             ]
         },
         {
             name: 'Nintendo',
             links: [
-                {name: 'Top Switch Games', linkTo: '/top-games/nintendo-switch'},
-                {name: 'Top Wii U Games', linkTo: '/top-games/wii-u'},
-                {name: 'Top 3DS Games', linkTo: '/top-games/nintendo-3ds'},
-                {name: 'Top Wii Games', linkTo: '/top-games/wii'},
-                {name: 'Top Gamecube Games', linkTo: '/top-games/gamecube'},
-                {name: 'Top DS Games', linkTo: '/top-games/nintendo-ds'},
+                {name: 'Top Switch Games', linkTo: '/top-games/Nintendo-Switch'},
+                {name: 'Top Wii U Games', linkTo: '/top-games/Wii-U'},
+                {name: 'Top 3DS Games', linkTo: '/top-games/Nintendo-3DS'},
+                {name: 'Top Wii Games', linkTo: '/top-games/Wii'},
+                {name: 'Top GameCube Games', linkTo: '/top-games/GameCube'},
+                {name: 'Top DS Games', linkTo: '/top-games/Nintendo-DS'},
             ]
         },
         {
             name: 'Microsoft',
             links: [
-                {name: 'Top Xbox Series S/X Games',  linkTo: '/top-games/xbox-series-s-x'},
-                {name: 'Top Xbox One Games',  linkTo: '/top-games/xbox-one'},
-                {name: 'Top Xbox 360 Games',  linkTo: '/top-games/xbox-360'},
-                {name: 'Top Xbox Games', linkTo: '/top-games/xbox'},
+                {name: 'Top Xbox Series S/X Games',  linkTo: '/top-games/Xbox-Series-S-X'},
+                {name: 'Top Xbox One Games',  linkTo: '/top-games/Xbox-One'},
+                {name: 'Top Xbox 360 Games',  linkTo: '/top-games/Xbox-360'},
+                {name: 'Top Xbox Games', linkTo: '/top-games/Xbox'},
             ]
         },
         {
             name: 'PC',
             links: [
-                {name: 'Top PC Games', linkTo: '/top-games/pc'},
+                {name: 'Top PC Games', linkTo: '/top-games/PC'},
             ]
         }
     ];
