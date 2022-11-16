@@ -36,7 +36,7 @@ const UserNav = (props) => {
                 {(listsDisp === true) ?
                 <div id='user-lists'>
                    { lists.map((list) => {
-                        let link = list.toLowerCase().replace(/\/| /g, '-'); 
+                        let link = list.replace(/\/| /g, '-'); 
                         return (
                             <Link key={lists.indexOf(list)} to={`/list/${link}/${user.id}/${user.name.replace(/\/| /g, '_')}`}>
                                 <button >{list + ' List'}</button>

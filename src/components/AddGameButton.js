@@ -123,7 +123,6 @@ const AddGameButton = (props) => {
     }    
 
     const toggleModalOn = async () => {
-        console.log(data);
         setTopCoord(window.scrollY + 80);
         setResultMessage('Wait please...');
         setShowResult(false);
@@ -161,7 +160,7 @@ const AddGameButton = (props) => {
                 {(showResult === false) ?
                 <div className='border'>
                     <div className='inner-box'>
-                        <h3>Add Game to my List</h3>
+                        <h3>{(text === 'add') ? 'Add Game to my List' : 'Edit Game'}</h3>
                         <form>
                             <div id='title'>
                                 <p>Game Title</p>
