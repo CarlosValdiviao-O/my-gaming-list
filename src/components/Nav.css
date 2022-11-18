@@ -162,6 +162,7 @@ h1 {
 
 #nav-profile-pic {
     border: 1px solid var(--lightblue);
+    display: flex;
 }
 
 #nav-profile-pic:hover {

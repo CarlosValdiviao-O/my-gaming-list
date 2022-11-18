@@ -65,7 +65,9 @@ const UserNav = (props) => {
                     </div>
                 : ''}
             </div>
-            <img id='nav-profile-pic' src={user.pic} alt={user.name + ' Pic'} referrerPolicy="no-referrer"></img>
+            <Link id='nav-profile-pic' to={`/user/${user.id}/${user.name.replace(/\/| /g, '_')}`}>
+                <img src={user.pic} alt={user.name + ' Pic'} referrerPolicy="no-referrer"></img>
+            </Link>
         </div>
     );
 };

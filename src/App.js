@@ -102,7 +102,7 @@ function App() {
             <Route path="/review/:id" element={<Review editor={false} firestore={firestore}/>} />
             <Route path="/review/:id/editor/:gameId/:game" element={<Review editor={true} firestore={firestore}/>} />
             <Route path="/reviews" element={<Reviews firestore={firestore}/>}/> 
-            <Route path="/reviews/:id/:name" element={<UserReviews/>}/>     
+            <Route path="/reviews/:id/:name" element={<UserReviews firestore={firestore}/>}/>     
             <Route path="/list/:list/:id/:name" element={<UserList firestore={firestore}/>}/> 
             <Route path="/top-games/:platform" element={<TopGames firestore={firestore}/>}/>  
             <Route path="/top-games/:platform/:type" element={<TopGames firestore={firestore}/>}/>  
