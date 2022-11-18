@@ -101,9 +101,9 @@ const Search = (props) => {
 
     const redirect = () => {
         if (searchVal !== '')
-            window.location.href = `http://localhost:3000/search/all/${searchVal}`;
+            window.location.href = `http://my-gaming-list.web.app/search/all/${searchVal}`;
         else
-            window.location.href = `http://localhost:3000/search`
+            window.location.href = `http://my-gaming-list.web.app/search`
     }
 
     const fetchItems = async (pageNum) => {

@@ -20,7 +20,7 @@ const AllGameReviews = (props) => {
 
     useEffect(() => {
         const fetchUserReview = async () => {
-            const reviewRef = firestore.collection('reviews').where('gameId', '==', game.id).where('userId', '==', user.id);
+            const reviewRef = firestore.collection('reviews').where('gameId', '==', game.id).where('userId', '==', user.id).limit(1);
             const docs = await reviewRef.get();
             let exists = false;
             docs.forEach(doc => {

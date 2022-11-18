@@ -74,7 +74,7 @@ const AddGameButton = (props) => {
 
     const saveGame = async () => {
         setShowResult(true);
-        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
+        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id).limit(1);
         const docSnapshot = await gameRef.get()
         let exists = false;
         await docSnapshot.forEach(doc => {
@@ -112,7 +112,7 @@ const AddGameButton = (props) => {
     
     const removeGame = async () => {
         setShowResult(true);
-        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
+        const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id).limit(1);
         const docSnapshot = await gameRef.get()
         await docSnapshot.forEach(doc => {
             doc.ref.delete();           
@@ -128,7 +128,7 @@ const AddGameButton = (props) => {
         setShowResult(false);
         setShowModal(true);
         if (text === 'edit') {
-            const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id);
+            const gameRef = firestore.collection('userGames').where('gameId', '==', data.gameId).where('userId', '==', user.id).limit(1);
             const docSnapshot = await gameRef.get()
             docSnapshot.forEach(doc => {
                 setScore(doc.data().score);

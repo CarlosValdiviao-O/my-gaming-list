@@ -341,26 +341,26 @@ exports.onDeleteReview = functions.firestore.document('reviews/{id}').onDelete((
   })
 })
 
-exports.createGame = functions.https.onCall( async (data, context) => {
-  let game = await fetchGameData(data.id);
-  firestore.collection('games').doc(`${data.id}`).set({
-    name: game.name,
-    id: game.id,
-    score: 0,
-    avgScore: null,
-    members: 0,
-    numberOfScores: 0,
-    platforms: game.platforms,
-    genres: game.genres,
-    releaseDate: game.releaseDate,
-    year: game.year,
-    familyGames: game.familyGames,
-    img: game.img,
-    description: game.description,
-    trailerLink: game.trailerLink,
-    screenshots: game.screenshots,
-    reviewers: [],
-    reviews: 0,
-  })
-  return 'Success';
-});
+//exports.createGame = functions.https.onCall( async (data, context) => {
+//  let game = await fetchGameData(data.id);
+//  firestore.collection('games').doc(`${data.id}`).set({
+//    name: game.name,
+//    id: game.id,
+//    score: 0,
+//    avgScore: null,
+//    members: 0,
+//    numberOfScores: 0,
+//    platforms: game.platforms,
+//    genres: game.genres,
+//    releaseDate: game.releaseDate,
+//    year: game.year,
+//    familyGames: game.familyGames,
+//    img: game.img,
+//    description: game.description,
+//    trailerLink: game.trailerLink,
+//    screenshots: game.screenshots,
+//    reviewers: [],
+//    reviews: 0,
+//  })
+//  return 'Success';
+//});

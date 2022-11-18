@@ -37,6 +37,8 @@ const Game = (props) => {
             }
         }
         aux();
+        setUserDoc(null);
+        setReviews(null);
     }, [id]);
 
     useEffect(() => {
@@ -55,7 +57,7 @@ const Game = (props) => {
 
     useEffect(() => {
         const aux = async () => {
-            const userGameRef = firestore.collection('userGames').where('gameId', '==', id).where('userId', '==', user.id);
+            const userGameRef = firestore.collection('userGames').where('gameId', '==', id).where('userId', '==', user.id).limit(1);
             const docSnapshot = await userGameRef.get();
             docSnapshot.forEach(docSnap => {
                 docSnap.ref.onSnapshot(doc => {

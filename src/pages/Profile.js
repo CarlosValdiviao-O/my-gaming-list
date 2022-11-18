@@ -73,9 +73,9 @@ const Profile = (props) => {
         if (userData.stats[toCamelCase(list)].counter > gamesAux.length && gamesAux.length < 3) {
             let userGamesRef;
             if (gamesAux.length === 0)
-            userGamesRef = firestore.collection('userGames').where('userId', '==', id).where('platforms', 'array-contains', list).orderBy('timestamp', 'desc').limit(3);
+                userGamesRef = firestore.collection('userGames').where('userId', '==', id).where('platforms', 'array-contains', list).orderBy('timestamp', 'desc').limit(3);
             else 
-            userGamesRef = firestore.collection('userGames').where('userId', '==', id).where('platforms', 'array-contains', list).orderBy('timestamp', 'desc').startAfter(lastDoc).limit(3 - gamesAux.length);
+                userGamesRef = firestore.collection('userGames').where('userId', '==', id).where('platforms', 'array-contains', list).orderBy('timestamp', 'desc').startAfter(lastDoc).limit(3 - gamesAux.length);
             let gamesDocs = await userGamesRef.get();
             gamesDocs.docs.forEach((doc) => {
                 games.push(doc.data());

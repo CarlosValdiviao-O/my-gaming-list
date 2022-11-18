@@ -111,7 +111,7 @@ function App() {
             <Route path="/search/:platform/:text" element={<Search firebase={firebase}/>}/>
             <Route path="/game/:id/:name" element={<Game firebase={firebase} tab='details'/>} />
             <Route path="/game/:id/:name/reviews" element={<Game firebase={firebase} tab='reviews'/>}/>  
-            <Route path="/game_creator" element={<GameCreator firebase={firebase} />} /> 
+            {/*<Route path="/game_creator" element={<GameCreator firebase={firebase} />} /> */}
           </Routes>
         </div>
         <Footer/>
