@@ -63,10 +63,11 @@ const AddGameButton = (props) => {
     }
 
     const formatGame = () => {
+        let img = gameData.img || '';
         setData({
             gameName: gameData.name,
             gameId: gameData.id,
-            gameImg: gameData.img,
+            gameImg: img,
             platforms: gameData.platforms,
             genres: gameData.genres,
         })
@@ -106,6 +107,7 @@ const AddGameButton = (props) => {
             
             catch (error) {
                 console.error('Error writing new message to Firebase Database', error);
+                setResultMessage('Something went wrong.');
             }
         }
     }  
@@ -195,7 +197,7 @@ const AddGameButton = (props) => {
                     </div>
                 </div>
                 :
-                <div className='resultBox'>
+                <div className={(resultMessage.includes('wrong')) ? 'resultBox wrong' : 'resultBox'}>
                     <p>{resultMessage}</p>
                     <div className='links'>
                         <Link to={`/list/all-games/${user.id}/${user.name.replace(/\/| /g, '_')}`}>View my Games List</Link>

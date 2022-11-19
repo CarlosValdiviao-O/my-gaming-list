@@ -1,10 +1,11 @@
 import { useEffect,  useState, useContext, useRef } from 'react';
 import { UserContext } from './UserContext';
 import { collection, addDoc, serverTimestamp, } from 'firebase/firestore';
+import Spinner from '../icons/spinner-white.gif';
 
 const QuickAdd = (props) => {
 
-    const { game, firestore, type, userDoc } = props;
+    const { game, firestore, type, userDoc, loading, toggleLoading } = props;
     const [ text, setText ] = useState('Add');
     const [ status, setStatus ] = useState('Plan to Play');
     const [ score, setScore ] = useState(11);
@@ -12,8 +13,6 @@ const QuickAdd = (props) => {
     const classes = 'quick-add ' + type;
     
     const user = useContext(UserContext);
-
-    const buttonRef = useRef();
 
     const hideRef = useRef();
 
@@ -64,35 +63,35 @@ const QuickAdd = (props) => {
     ]
 
     const saveGame = async () => {
-        buttonRef.current.disabled = true;
+        toggleLoading();
         if (userDoc !== null) {
             await userDoc.ref.update({
                 score: (score >= 1 && score <= 10) ? +score : null,
                 status: status,
                 timestamp: serverTimestamp(),
             })
-            buttonRef.current.disabled = false;
+            toggleLoading(); 
         } 
-        else
-        try {
-            await addDoc(collection(firestore, 'userGames'), {
-                score: (score >= 1 && score <= 10) ? +score : null,
-                status: status,
-                timestamp: serverTimestamp(),
-                gameName: game.name,
-                gameId: game.id,
-                gameImg: game.img,
-                userId: user.id,
-                platforms: game.platforms,
-                genres: game.genres,
-            });
-            buttonRef.current.disabled = false;
-        }
-        
-        catch (error) {
-            console.error('Error writing new message to Firebase Database', error);
-        }
-    
+        else { 
+            try {
+                await addDoc(collection(firestore, 'userGames'), {
+                    score: (score >= 1 && score <= 10) ? +score : null,
+                    status: status,
+                    timestamp: serverTimestamp(),
+                    gameName: game.name,
+                    gameId: game.id,
+                    gameImg: game.img,
+                    userId: user.id,
+                    platforms: game.platforms,
+                    genres: game.genres,
+                });
+                toggleLoading(); 
+            }        
+            catch (error) {
+                console.error('Error writing new message to Firebase Database', error);
+                toggleLoading(); 
+            }  
+        }             
     }   
 
     return (
@@ -121,7 +120,8 @@ const QuickAdd = (props) => {
             </div>
             <div>
                 <div></div>
-                <button onClick={saveGame} ref={buttonRef} className={text.toLowerCase()}>{text}</button>
+                <button onClick={saveGame} disabled={loading ? true : false} className={text.toLowerCase()}>
+                    { !loading ? text : <img src={Spinner} alt='loading..'></img>}</button>
             </div>
         </div>
     )

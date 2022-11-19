@@ -131,7 +131,8 @@
     background-color: #4065ba;
     color: white;
     border-radius: 4px;
-    padding: 4px 8px;
+    height: 22px;
+    width: 54px;
 }
 
 #game-page .left .info {
@@ -331,7 +332,8 @@
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    padding: 6px 12px 6px 6px;
+    height: 26px;
+    width: 72px;
     font-size: 11px;
     transition: all ease-in-out .3s;
 }
@@ -345,8 +347,19 @@
     padding: 0 2px;
 }
 
-#game-page .quick-add.center button:hover {
+#game-page .quick-add.center button:not(:disabled):hover {
    background-color: rgba(79,116,200,.8); 
+}
+
+#game-page .quick-add button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-page .quick-add button img {
+    height: 24px;
+    width: 24px;
 }
 
 #game-page .top video {

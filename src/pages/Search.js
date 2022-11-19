@@ -107,7 +107,7 @@ const Search = (props) => {
     }
 
     const fetchItems = async (pageNum) => {
-        let link = 'https://api.rawg.io/api/games?page_size=40';
+        let link = 'https://api.rawg.io/api/games?page_size=40&search_precise=true';
         if (platform === 'genre') {
             let genre;
             genresData.map(item => {
@@ -123,7 +123,8 @@ const Search = (props) => {
                 link += '&search=' + text;
         }
         if (platform !== 'user') {
-            let fetchedData = await getRAWG({link: link + `&ordering=-metacritic&page=${pageNum + 1}`});
+            console.log(link);
+            let fetchedData = await getRAWG({link: link + `&page=${pageNum + 1}`});
             let fetchedItems = JSON.parse(fetchedData.data);
             let aux = [];
             if (games !== null)

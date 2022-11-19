@@ -100,28 +100,28 @@
     height: 124px !important;
 }
 
-#search .links {
+#search>div>.links {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin-bottom: 24px;
 }
 
-#search .links a {
+#search>div> .links a {
     padding: 12px 0;
     color: #1c439b;
     font-size: 12px;
     transition: all ease-in-out .2s;
 }
 
-#search .links a:not(.last) {
+#search>div> .links a:not(.last) {
     border-bottom: 1px solid #f0f0f0;
 }
 
-#search .links a:hover {
+#search>div> .links a:hover {
     background-color: #e1e7f5;
 }
 
-#search .links a::before {
+#search>div> .links a::before {
     content: '>';
     margin: 0 6px;
     font-size: 14px;

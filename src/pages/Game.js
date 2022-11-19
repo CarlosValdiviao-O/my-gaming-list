@@ -18,6 +18,7 @@ const Game = (props) => {
     const [ showDropdown , setShowDropdown ] = useState(false);
     const [ userDoc, setUserDoc ] = useState(null);
     const [ reviews, setReviews ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
 
     const link = `https://api.rawg.io/api/games/${id}`;
     const getRAWG = firebase.functions().httpsCallable('getRAWG');
@@ -69,6 +70,10 @@ const Game = (props) => {
         aux();
     }, [user])
 
+    const toggleLoading = () => {
+        setLoading(loading => (!loading));
+    }
+
     const formatGameData = async (data) => {
         let familyGames = await getRAWG({link: link + '/game-series?'});
         let familyGamesVal = JSON.parse(familyGames.data);
@@ -102,13 +107,14 @@ const Game = (props) => {
                 genres.push(genre.name)
             })
         }
+
         setGame({
             description: data.description.replace(/<\/p>\n<p>/g, '<br />'),
             genres: genres,
             familyGames: familyGamesArr,
             id: id,
-            img: data.background_image,
-            name:data.name,
+            img: data.background_image || '',
+            name: data.name,
             platforms: platforms,
             releaseDate: (data.tba === false) ? data.released : 'TBA',
             screenshots: screenshotsArr,
@@ -141,17 +147,17 @@ const Game = (props) => {
                 <div id='columns'>
                     <div className='left'>
                         <div className='image'>
-                            <img src={(game.img !== null) ? game.img : Image} alt={game.name}></img>
+                            <img src={(game.img !== null && game.img !== '') ? game.img : Image} alt={game.name}></img>
                         </div>
                         {(user) ? 
                         (user.games.includes(id)) ?
                             <QuickAdd game={game} firestore={firestore} type='side'
-                                userDoc={userDoc}/>
+                                userDoc={userDoc} loading={loading} toggleLoading={toggleLoading}/>
                             : 
                             <div className='dropdown'>
                                 <button onClick={() => setShowDropdown(!showDropdown)}>Add to My List</button>
                                 <QuickAdd game={game} firestore={firestore} type={(showDropdown === true) ? 'side' : 'side hide'}
-                                    userDoc={userDoc}/>                            
+                                    userDoc={userDoc} loading={loading} toggleLoading={toggleLoading}/>                            
                             </div>
                         :
                         <div>
@@ -209,7 +215,7 @@ const Game = (props) => {
                                     </div>
                                     {(user) ?
                                     <QuickAdd game={game} firestore={firestore} type='center'
-                                        userDoc={userDoc}/>
+                                        userDoc={userDoc} loading={loading} toggleLoading={toggleLoading}/>
                                     :
                                     <div className='no-user'>
                                         <p>Log-In/Sign-Up to add this game to your lists!</p>

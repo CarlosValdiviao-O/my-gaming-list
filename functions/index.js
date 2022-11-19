@@ -240,10 +240,10 @@ async function updateScore () {
     games.docs.forEach((game) => {
       keepGoing = true;
       if (game.data().rank !== counter || game.data().avgScore !== game.data().visibleScore)
-      game.ref.update({
-        rank: counter,
-        visibleScore: game.data().avgScore,
-      })
+        game.ref.update({
+          rank: counter,
+          visibleScore: game.data().avgScore,
+        })
       counter++;
     })
   }
