@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
 import AddGameButton from './AddGameButton';
+import Image from '../icons/no-image.png';
 
 const SideList = (props) => {
 
@@ -22,7 +23,7 @@ const SideList = (props) => {
                         <div key={games.indexOf(game)} className='game'>
                             <h4>{games.indexOf(game) + 1}</h4>
                             <Link className='image' to={`game/${game.id}/${game.name.replace(/\/| /g, '_')}`}>
-                                <img src={game.img}></img>
+                                <img src={game.img !== '' ? game.img : Image}></img>
                             </Link>
                             <div className='info'>
                                 <div className='top'>

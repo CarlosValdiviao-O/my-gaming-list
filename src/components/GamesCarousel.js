@@ -78,7 +78,7 @@ const GamesCarousel = (props) => {
                 {items.map(item => {
                         return(
                             <Link key={items.indexOf(item)} className='game' to={item.link}>
-                                <img src={(item.pic !== null) ? item.pic : Image} alt={item.name}></img>
+                                <img src={(item.pic !== null && item.pic !== '') ? item.pic : Image} alt={item.name}></img>
                                 <p>{item.name}</p>
                             </Link>
                         )

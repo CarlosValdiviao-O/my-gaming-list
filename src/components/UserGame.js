@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { UserContext } from './UserContext';
 import AddGameButton from './AddGameButton';
+import Image from '../icons/no-image.png';
 
 const UserGame = (props) => {
     const { game, firestore, number } = props;
@@ -21,7 +22,7 @@ const UserGame = (props) => {
             <p className='number'>{number}</p>
             <div className='image-container'>
                 <div className='image'>
-                    <Link to={`/game/${game.gameId}/${game.gameName.replace(/\/| /g, '_')}`}><img src={game.gameImg} alt={game.gameName}></img></Link>
+                    <Link to={`/game/${game.gameId}/${game.gameName.replace(/\/| /g, '_')}`}><img src={game.gameImg !== '' ? game.gameImg : Image} alt={game.gameName}></img></Link>
                 </div>
             </div>
             <div className='name'>

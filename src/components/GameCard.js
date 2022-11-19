@@ -29,7 +29,7 @@ const GameCard = (props) => {
             </div>
             <div className='content'>
                 <Link to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`} className='image'>
-                    <img src={(game.img !== null) ? game.img : Image} alt={game.name}></img>
+                    <img src={(game.img !== null && game.img !== '') ? game.img : Image} alt={game.name}></img>
                 </Link>
                 <div className='info'>
                     <div className={(isLong === true) ? 'long' : 'short'} dangerouslySetInnerHTML={{__html: game.description}}></div>

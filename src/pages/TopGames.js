@@ -5,6 +5,7 @@ import BottomNote from '../components/BottomNote';
 import platformsData from '../components/platformsData';
 import AddGameButton from '../components/AddGameButton';
 import '../components/TopGames.css';
+import Image from '../icons/no-image.png';
 
 const TopGames = (props) => {
     const user = useContext(UserContext);
@@ -123,7 +124,7 @@ const TopGames = (props) => {
                             <h4>{index + 1}</h4>
                             <div className='info'>
                                 <Link to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`} className='image'>
-                                    <img src={game.img} alt={game.name}></img>
+                                    <img src={game.img !== '' ? game.img : Image} alt={game.name}></img>
                                 </Link>
                                 <div className='right'>
                                     <Link  to={`/game/${game.id}/${game.name.replace(/\/| /g, '_')}`} className='title'>{game.name}</Link>

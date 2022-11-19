@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { UserContext } from './UserContext';
-import './ReviewComponent.css'
+import './ReviewComponent.css';
+import Image from '../icons/no-image.png';
 
 const ReviewComponent = (props) => {
     const { review, showAll } = props;
@@ -37,7 +38,7 @@ const ReviewComponent = (props) => {
                     <p className='date'>{review.createdAt.toDate().toDateString()}</p>
                 </div>
                 <p className={review.recommended.toLowerCase().replace(/ /g, '-')}>{review.recommended}</p>
-                <div className='content'><Link to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`} className='game-img'><img src={review.gameImg} alt={review.gameName}></img></Link>{content}</div>
+                <div className='content'><Link to={`/game/${review.gameId}/${review.gameName.replace(/\/| /g, '_')}`} className='game-img'><img src={review.gameImg !== '' ? review.gameImg : Image} alt={review.gameName}></img></Link>{content}</div>
                 <p className={(isLong === true) ? 'rating' : 'hide'}>Reviewer's Rating: <span>{review.rating}</span></p>
                 <div className='bottom'>
                     <button className={(isLong === true) ? 'show-less' : 'read-more'} onClick={() => setIsLong(!isLong)}>

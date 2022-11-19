@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './../components/UserContext';
 import AddGameButton from './AddGameButton';
+import Image from '../icons/no-image.png';
 
 const LastUserUpdates = (props) => {
 
@@ -18,7 +19,7 @@ const LastUserUpdates = (props) => {
                     return (
                         <div key={games.indexOf(game)} className='user-game'>
                             <Link className='image' to={`game/${game.gameId}/${game.gameName.replace(/\/| /g, '_')}`}>
-                                <img src={game.gameImg}></img>
+                                <img src={game.gameImg !== '' ? game.gameImg : Image}></img>
                             </Link>
                             <div className='info'>
                                 <div className='top'>
