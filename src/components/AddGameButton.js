@@ -200,7 +200,7 @@ const AddGameButton = (props) => {
                 <div className={(resultMessage.includes('wrong')) ? 'resultBox wrong' : 'resultBox'}>
                     <p>{resultMessage}</p>
                     <div className='links'>
-                        <Link to={`/list/all-games/${user.id}/${user.name.replace(/\/| /g, '_')}`}>View my Games List</Link>
+                        <Link to={`/list/All-Games/${user.id}/${user.name.replace(/\/| /g, '_')}`}>View my Games List</Link>
                         <p>-</p>
                         <Link to={`/game/${data.gameId}/${data.gameName.replace(/\/| /g, '_')}`}>Go to Game Page</Link>
                     </div>

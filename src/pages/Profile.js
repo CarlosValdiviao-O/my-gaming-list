@@ -15,6 +15,9 @@ const Profile = (props) => {
     const firestore = firebase.firestore();
 
     useEffect(() => {
+        console.log(userLists);
+    }, [userLists])
+    useEffect(() => {
         setUserData(null);
         const aux = async () => {
             const userRef = firestore.collection('users').doc(id);
@@ -40,8 +43,8 @@ const Profile = (props) => {
                         stats: userData.stats[toCamelCase(list)],
                         games: latestGames,
                     })
+                    setUserLists(state => ([...listsAux]));
                 })
-                setUserLists(listsAux);
             }
             else
             setUserLists(null)

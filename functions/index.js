@@ -34,6 +34,9 @@ exports.onCreateUserGameDoc = functions.firestore.document('userGames/{game}').o
     const userDoc = user.data();
     let newLists = userDoc.lists;
     let newStats = userDoc.stats;
+    if (userDoc.games.includes(data.gameId)) {
+      return new Promise
+    }
     const newGames = userDoc.games.concat(data.gameId);
     newStats['allGames'][toCamelCase(data.status)] += 1;
     newStats['allGames']['counter'] += 1;
